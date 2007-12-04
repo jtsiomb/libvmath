@@ -1,0 +1,39 @@
+vmath - 3.0
+-----------
+The math library has a double interface, and can be used by both C and C++
+programs.
+
+So for example a C program could do the following:
+-------------------------------------
+#include <stdio.h>
+#include "vmath.h"
+
+int main(void)
+{
+	vec3_t a, b, x;
+
+	a = v3_cons(1, 0, 0);
+	b = v3_cons(0, 1, 0);
+	x = v3_cross(a, b);
+
+	v3_print(stdout, x);
+	putchar('\n');
+
+	return 0;
+}
+-------------------------------------
+
+While a C++ program could do the following:
+-------------------------------------
+#include <iostream>
+#include "vmath.h"
+
+int main(void)
+{
+	Vector3 a(1, 0, 0);
+	Vector3 b(0, 1, 0);
+	Vector3 x = cross_product(a, b);
+
+	std::cout << x << std::endl;
+}
+-------------------------------------

@@ -1,0 +1,8 @@
+libdir=${prefix}/lib
+incdir=${prefix}/include/vmath
+
+Name: vmath
+Description: Vector mathematics library
+Version: ${ver}
+Cflags: -I${incdir}
+Libs: -L${libdir} -lvmath
