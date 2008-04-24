@@ -6,7 +6,7 @@
 
 #undef DBG_SEARCH_LINEAR
 
-#define INIT_TRACK_SIZE		2
+#define INIT_TRACK_SIZE		32
 
 static int find_key(struct key *track, int beg, int end, float t);
 

@@ -29,12 +29,10 @@ int curve_cons(curve_t *c);
 void curve_free(curve_t *c);
 void curve_mode(curve_t *c, int cmode);
 
-/* set values along the length of the curve (t \in [0,1]) */
 static inline int curve_value(curve_t *c, float t, float val);
 static inline int curve_value3(curve_t *c, float t, vec3_t val);
 int curve_value4(curve_t *c, float t, vec4_t val);
 
-/* evaluate the curve at an arbitrary point (t \in [0,1]) */
 static inline float curve_eval(curve_t *c, float t);
 static inline vec3_t curve_eval3(curve_t *c, float t);
 static inline vec4_t curve_eval4(curve_t *c, float t);
