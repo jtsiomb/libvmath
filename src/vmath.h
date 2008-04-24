@@ -59,5 +59,6 @@ scalar_t bezier(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t);
 #include "quat.h"
 #include "sphvec.h"
 #include "ray.h"
+#include "curves.h"
 
 #endif	/* VMATH_H_ */

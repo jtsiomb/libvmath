@@ -25,7 +25,7 @@ install: $(lib_a) $(lib_so)
 	install -d $(PREFIX)/lib
 	install -m 644 $(lib_a) $(lib_so) $(PREFIX)/lib
 	install -d $(PREFIX)/include/vmath
-	install -m 644 src/*.h src/*.inl $(PREFIX)/include/vmath
+	cd src; install -m 644 *.h *.inl $(PREFIX)/include/vmath
 	install -d $(PREFIX)/lib/pkgconfig
 	install -m 644 vmath.pc $(PREFIX)/lib/pkgconfig
 
