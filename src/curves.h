@@ -1,7 +1,7 @@
 #ifndef VMATH_CURVES_H_
 #define VMATH_CURVES_H_
 
-#include <vmath_types.h>
+#include "vmath_types.h"
 
 enum {
 	CURVE_LINEAR,
