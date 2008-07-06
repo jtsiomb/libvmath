@@ -19,6 +19,40 @@ static inline void v2_print(FILE *fp, vec2_t v)
 	fprintf(fp, "[ %.4f %.4f ]", v.x, v.y);
 }
 
+static inline vec2_t v2_add(vec2_t v1, vec2_t v2)
+{
+	vec2_t res;
+	res.x = v1.x + v2.x;
+	res.y = v1.y + v2.y;
+	return res;
+}
+
+static inline vec2_t v2_sub(vec2_t v1, vec2_t v2)
+{
+	vec2_t res;
+	res.x = v1.x - v2.x;
+	res.y = v1.y - v2.y;
+	return res;
+}
+
+static inline vec2_t v2_scale(vec2_t v, scalar_t s)
+{
+	vec2_t res;
+	res.x = v.x * s;
+	res.y = v.y * s;
+	return res;
+}
+
+static inline scalar_t v2_length(vec2_t v)
+{
+	return sqrt(v.x * v.x + v.y * v.y);
+}
+
+static inline scalar_t v2_length_sq(vec2_t v)
+{
+	return v.x * v.x + v.y * v.y;
+}
+
 
 /* C 3D vector functions */
 static inline vec3_t v3_cons(scalar_t x, scalar_t y, scalar_t z)

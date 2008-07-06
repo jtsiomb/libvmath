@@ -9,10 +9,10 @@
 extern "C" {
 #endif	/* __cplusplus */
 
-#define quat_cons		v4_cons
-#define quat_vec(q)		v3_cons((q).x, (q).y, (q).z)
-#define quat_s(q)		((q).w)
-#define quat_identity	quat_cons(0.0, 0.0, 0.0, 1.0)
+#define quat_cons(s, x, y, z)	v4_cons(x, y, z, s)
+#define quat_vec(q)				v3_cons((q).x, (q).y, (q).z)
+#define quat_s(q)				((q).w)
+#define quat_identity()			quat_cons(1.0, 0.0, 0.0, 0.0)
 void quat_print(FILE *fp, quat_t q);
 
 #define quat_add		v4_add
