@@ -50,6 +50,13 @@ fi
 if [ "$OPT" = 'yes' ]; then
 	echo 'opt = -O3' >>Makefile
 fi
+if [ "`uname -s`" = Darwin ]; then
+	echo 'shared = -dynamiclib' >>Makefile
+	echo 'so = dylib' >>Makefile
+else
+	echo 'shared = -shared' >>Makefile
+	echo 'so = so' >>Makefile
+fi
 cat Makefile.in >>Makefile
 
 echo 'creating pkg-config file ...'

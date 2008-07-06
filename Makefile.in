@@ -3,12 +3,12 @@ ccsrc = $(wildcard src/*.cc)
 obj = $(csrc:.c=.o) $(ccsrc:.cc=.o)
 
 lib_a = libvmath.a
-lib_so = libvmath.so
+lib_so = libvmath.$(so)
 
 CC = gcc
 CXX = g++
-CFLAGS = -std=c89 -pedantic -Wall $(opt) $(dbg) -fpic -Isrc
-CXXFLAGS = -ansi -pedantic -Wall $(opt) $(dbg) -fpic -Isrc
+CFLAGS = -std=c89 -pedantic -Wall $(opt) $(dbg) -fPIC -Isrc
+CXXFLAGS = -ansi -pedantic -Wall $(opt) $(dbg) -fPIC -Isrc
 LDFLAGS =
 
 .PHONY: all
@@ -18,7 +18,7 @@ $(lib_a): $(obj)
 	$(AR) rcs $@ $^
 
 $(lib_so): $(obj)
-	$(CXX) $(CFLAGS) -shared -o $@ $^ $(LDFLAGS)
+	$(CXX) $(CFLAGS) $(shared) -o $@ $^ $(LDFLAGS)
 
 .PHONY: install
 install: $(lib_a) $(lib_so)
