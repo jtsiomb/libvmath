@@ -7,8 +7,8 @@ lib_so = libvmath.$(so)
 
 CC = gcc
 CXX = g++
-CFLAGS = -std=c89 -pedantic -Wall $(opt) $(dbg) -fPIC -Isrc
-CXXFLAGS = -ansi -pedantic -Wall $(opt) $(dbg) -fPIC -Isrc
+CFLAGS = -std=c89 -pedantic -Wall -Wno-strict-aliasing $(opt) $(dbg) -fPIC -Isrc
+CXXFLAGS = -ansi -pedantic -Wall -Wno-strict-aliasing $(opt) $(dbg) -fPIC -Isrc
 LDFLAGS =
 
 .PHONY: all
