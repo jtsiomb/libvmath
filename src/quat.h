@@ -33,6 +33,7 @@ quat_t quat_rotate(quat_t q, scalar_t angle, scalar_t x, scalar_t y, scalar_t z)
 quat_t quat_rotate_quat(quat_t q, quat_t rotq);
 
 static inline void quat_to_mat3(mat3_t res, quat_t q);
+static inline void quat_to_mat4(mat4_t res, quat_t q);
 
 #define quat_lerp quat_slerp
 quat_t quat_slerp(quat_t q1, quat_t q2, scalar_t t);

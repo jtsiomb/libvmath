@@ -39,9 +39,17 @@ static inline quat_t quat_inverse(quat_t q)
 
 static inline void quat_to_mat3(mat3_t res, quat_t q)
 {
-	m3_cons(res,	1.0 - 2.0 * q.y*q.y - 2.0 * q.z*q.z,	2.0 * q.x * q.y + 2.0 * q.w * q.z,		2.0 * q.z * q.x - 2.0 * q.w * q.y,
-					2.0 * q.x * q.y - 2.0 * q.w * q.z,		1.0 - 2.0 * q.x*q.x - 2.0 * q.z*q.z,	2.0 * q.y * q.z + 2.0 * q.w * q.x,
-					2.0 * q.z * q.x + 2.0 * q.w * q.y,		2.0 * q.y * q.z - 2.0 * q.w * q.x,		1.0 - 2.0 * q.x*q.x - 2.0 * q.y*q.y);
+	m3_cons(res, 1.0 - 2.0 * q.y*q.y - 2.0 * q.z*q.z, 2.0 * q.x * q.y + 2.0 * q.w * q.z,   2.0 * q.z * q.x - 2.0 * q.w * q.y,
+				 2.0 * q.x * q.y - 2.0 * q.w * q.z,   1.0 - 2.0 * q.x*q.x - 2.0 * q.z*q.z, 2.0 * q.y * q.z + 2.0 * q.w * q.x,
+				 2.0 * q.z * q.x + 2.0 * q.w * q.y,   2.0 * q.y * q.z - 2.0 * q.w * q.x,   1.0 - 2.0 * q.x*q.x - 2.0 * q.y*q.y);
+}
+
+static inline void quat_to_mat4(mat4_t res, quat_t q)
+{
+	m4_cons(res, 1.0 - 2.0 * q.y*q.y - 2.0 * q.z*q.z, 2.0 * q.x * q.y + 2.0 * q.w * q.z,   2.0 * q.z * q.x - 2.0 * q.w * q.y,   0,
+				 2.0 * q.x * q.y - 2.0 * q.w * q.z,   1.0 - 2.0 * q.x*q.x - 2.0 * q.z*q.z, 2.0 * q.y * q.z + 2.0 * q.w * q.x,   0,
+				 2.0 * q.z * q.x + 2.0 * q.w * q.y,   2.0 * q.y * q.z - 2.0 * q.w * q.x,   1.0 - 2.0 * q.x*q.x - 2.0 * q.y*q.y, 0,
+				 0, 0, 0, 1);
 }
 
 #ifdef __cplusplus

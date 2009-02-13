@@ -12,6 +12,7 @@ void m3_to_m4(mat4_t dest, mat3_t src)
 			dest[i][j] = src[i][j];
 		}
 	}
+	dest[3][3] = 1.0;
 }
 
 void m3_print(FILE *fp, mat3_t m)
@@ -103,7 +104,19 @@ void m4_rotate_axis(mat4_t m, scalar_t angle, scalar_t x, scalar_t y, scalar_t z
 
 void m4_rotate_quat(mat4_t m, quat_t q)
 {
-	/* TODO: implement */
+	mat4_t rm;
+	quat_to_mat4(rm, q);
+	m4_mult(m, m, rm);
+}
+
+void m4_scale(mat4_t m, scalar_t x, scalar_t y, scalar_t z)
+{
+	mat4_t sm;
+	m4_identity(sm);
+	sm[0][0] = x;
+	sm[1][1] = y;
+	sm[2][2] = z;
+	m4_mult(m, m, sm);
 }
 
 void m4_transpose(mat4_t res, mat4_t m)
