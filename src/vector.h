@@ -15,8 +15,10 @@ static inline void v2_print(FILE *fp, vec2_t v);
 static inline vec2_t v2_add(vec2_t v1, vec2_t v2);
 static inline vec2_t v2_sub(vec2_t v1, vec2_t v2);
 static inline vec2_t v2_scale(vec2_t v, scalar_t s);
+static inline scalar_t v2_dot(vec2_t v1, vec2_t v2);
 static inline scalar_t v2_length(vec2_t v);
 static inline scalar_t v2_length_sq(vec2_t v);
+static inline vec2_t v2_normalize(vec2_t v);
 
 /* C 3D vector functions */
 static inline vec3_t v3_cons(scalar_t x, scalar_t y, scalar_t z);
@@ -124,6 +126,10 @@ public:
 	friend std::ostream &operator <<(std::ostream &out, const Vector2 &vec);
 };
 
+inline Vector2 lerp(const Vector2 &a, const Vector2 &b, scalar_t t);
+inline Vector2 catmull_rom_spline(const Vector2 &v0, const Vector2 &v1,
+		const Vector2 &v2, const Vector2 &v3, scalar_t t);
+
 /* 3D Vector */
 class Vector3 {
 public:
@@ -194,6 +200,8 @@ public:
 };
 
 inline Vector3 lerp(const Vector3 &a, const Vector3 &b, scalar_t t);
+inline Vector3 catmull_rom_spline(const Vector3 &v0, const Vector3 &v1,
+		const Vector3 &v2, const Vector3 &v3, scalar_t t);
 
 /* 4D Vector */
 class Vector4 {
@@ -253,6 +261,11 @@ public:
 	
 	friend std::ostream &operator <<(std::ostream &out, const Vector4 &vec);
 };
+
+inline Vector4 lerp(const Vector4 &v0, const Vector4 &v1, scalar_t t);
+inline Vector4 catmull_rom_spline(const Vector4 &v0, const Vector4 &v1,
+		const Vector4 &v2, const Vector4 &v3, scalar_t t);
+
 #endif	/* __cplusplus */
 
 #include "vector.inl"

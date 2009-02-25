@@ -48,6 +48,18 @@ scalar_t bspline(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t);
 scalar_t catmull_rom_spline(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t);
 scalar_t bezier(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t);
 
+scalar_t noise1(scalar_t x);
+scalar_t noise2(scalar_t x, scalar_t y);
+scalar_t noise3(scalar_t x, scalar_t y, scalar_t z);
+
+scalar_t fbm1(scalar_t x, int octaves);
+scalar_t fbm2(scalar_t x, scalar_t y, int octaves);
+scalar_t fbm3(scalar_t x, scalar_t y, scalar_t z, int octaves);
+
+scalar_t turbulence1(scalar_t x, int octaves);
+scalar_t turbulence2(scalar_t x, scalar_t y, int octaves);
+scalar_t turbulence3(scalar_t x, scalar_t y, scalar_t z, int octaves);
+
 #ifdef __cplusplus
 }
 #endif	/* __cplusplus */
