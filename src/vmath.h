@@ -39,6 +39,8 @@ extern "C" {
 #endif	/* __cplusplus */
 
 static inline scalar_t frand(scalar_t range);
+static inline vec3_t sphrand(scalar_t rad);
+
 scalar_t integral(scalar_t (*f)(scalar_t), scalar_t low, scalar_t high, int samples);
 scalar_t gaussian(scalar_t x, scalar_t mean, scalar_t sdev);
 

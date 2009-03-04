@@ -31,7 +31,7 @@ public:
 	Vector3 origin, dir;
 	scalar_t energy;
 	scalar_t ior;
-	unsigned long time;
+	long time;
 
 	Ray();
 	Ray(const Vector3 &origin, const Vector3 &dir);
