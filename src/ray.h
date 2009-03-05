@@ -30,6 +30,7 @@ public:
 	
 	Vector3 origin, dir;
 	scalar_t energy;
+	int iter;
 	scalar_t ior;
 	long time;
 

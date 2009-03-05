@@ -6,6 +6,7 @@ Ray::Ray() {
 	ior = env_ior;
 	energy = 1.0;
 	time = 0;
+	iter = 0;
 }
 
 Ray::Ray(const Vector3 &origin, const Vector3 &dir) {
@@ -14,6 +15,7 @@ Ray::Ray(const Vector3 &origin, const Vector3 &dir) {
 	ior = env_ior;
 	energy = 1.0;
 	time = 0;
+	iter = 0;
 }
 
 // TODO: remove this hack
