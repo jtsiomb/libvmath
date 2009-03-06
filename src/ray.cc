@@ -18,19 +18,17 @@ Ray::Ray(const Vector3 &origin, const Vector3 &dir) {
 	iter = 0;
 }
 
-// TODO: remove this hack
 void Ray::transform(const Matrix4x4 &xform) {
-	//Matrix4x4 inv_transp_xform = xform.inverse();
-	//inv_transp_xform.transpose();
-	
-	/*origin.transform(xform);
-	dir.transform((Matrix3x3)xform);*/
+	Matrix4x4 upper;
+	Vector3 dir;
 
-	Vector3 d = dir - origin;
-	d.transform((Matrix3x3)xform);
+	upper = xform;
+	upper[0][3] = upper[1][3] = upper[2][3] = upper[3][0] = upper[3][1] = upper[3][2] = 0.0;
+	upper[3][3] = 1.0;
+
+	dir = (this->dir - origin).transformed(upper);
 	origin.transform(xform);
-	
-	dir = d + origin;
+	this->dir = dir + origin;
 }
 
 Ray Ray::transformed(const Matrix4x4 &xform) const {
