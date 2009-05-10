@@ -311,6 +311,10 @@ inline scalar_t &Vector2::operator [](int elem) {
 	return elem ? y : x;
 }
 
+inline const scalar_t &Vector2::operator [](int elem) const {
+	return elem ? y : x;
+}
+
 inline Vector2 operator -(const Vector2 &vec) {
 	return Vector2(-vec.x, -vec.y);
 }
@@ -436,6 +440,10 @@ inline Vector2 catmull_rom_spline(const Vector2 &v0, const Vector2 &v1,
 /* ------------- Vector3 -------------- */
 
 inline scalar_t &Vector3::operator [](int elem) {
+	return elem ? (elem == 1 ? y : z) : x;
+}
+
+inline const scalar_t &Vector3::operator [](int elem) const {
 	return elem ? (elem == 1 ? y : z) : x;
 }
 
@@ -577,6 +585,10 @@ inline Vector3 catmull_rom_spline(const Vector3 &v0, const Vector3 &v1,
 /* ----------- Vector4 ----------------- */
 
 inline scalar_t &Vector4::operator [](int elem) {
+	return elem ? (elem == 1 ? y : (elem == 2 ? z : w)) : x;
+}
+
+inline const scalar_t &Vector4::operator [](int elem) const {
 	return elem ? (elem == 1 ? y : (elem == 2 ? z : w)) : x;
 }
 

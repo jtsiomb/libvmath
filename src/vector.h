@@ -76,6 +76,7 @@ public:
 	Vector2(const Vector4 &vec);
 	
 	inline scalar_t &operator [](int elem);	
+	inline const scalar_t &operator [](int elem) const;
 	
 	/* unary operations */
 	friend inline Vector2 operator -(const Vector2 &vec);
@@ -144,6 +145,7 @@ public:
 	Vector3 &operator =(const SphVector &sph);
 	
 	inline scalar_t &operator [](int elem);	
+	inline const scalar_t &operator [](int elem) const;
 	
 	/* unary operations */
 	friend inline Vector3 operator -(const Vector3 &vec);
@@ -214,6 +216,7 @@ public:
 	Vector4(const Vector3 &vec);
 	
 	inline scalar_t &operator [](int elem);	
+	inline const scalar_t &operator [](int elem) const;
 	
 	/* unary operations */
 	friend inline Vector4 operator -(const Vector4 &vec);
