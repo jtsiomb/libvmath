@@ -22,12 +22,12 @@ $(lib_so): $(obj)
 
 .PHONY: install
 install: $(lib_a) $(lib_so)
-	install -d $(PREFIX)/lib
-	install -m 644 $(lib_a) $(lib_so) $(PREFIX)/lib
-	install -d $(PREFIX)/include/vmath
-	cd src; install -m 644 *.h *.inl $(PREFIX)/include/vmath
-	install -d $(PREFIX)/lib/pkgconfig
-	install -m 644 vmath.pc $(PREFIX)/lib/pkgconfig
+	$(INSTALL) -d $(PREFIX)/lib
+	$(INSTALL) -m 644 $(lib_a) $(lib_so) $(PREFIX)/lib
+	$(INSTALL) -d $(PREFIX)/include/vmath
+	cd src; $(INSTALL) -m 644 *.h *.inl $(PREFIX)/include/vmath
+	$(INSTALL) -d $(PREFIX)/lib/pkgconfig
+	$(INSTALL) -m 644 vmath.pc $(PREFIX)/lib/pkgconfig
 
 .PHONY: uninstall
 uninstall:

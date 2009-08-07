@@ -57,6 +57,17 @@ else
 	echo 'shared = -shared' >>Makefile
 	echo 'so = so' >>Makefile
 fi
+
+if [ "`uname -s`" = SunOS ]; then
+	if which ginstall >/dev/null; then
+		echo 'INSTALL = ginstall' >>Makefile
+	else
+		echo "INSTALL = `pwd`/install-sh" >>Makefile
+	fi
+else
+	echo 'INSTALL = install' >>Makefile
+fi
+
 cat Makefile.in >>Makefile
 
 echo 'creating pkg-config file ...'
