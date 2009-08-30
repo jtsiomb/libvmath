@@ -50,3 +50,16 @@ void Ray::leave() {
 	ior_stack.pop();
 	ior = ior_stack.empty() ? env_ior : ior_stack.top();
 }
+
+scalar_t Ray::calc_ior(bool entering, scalar_t mat_ior) const
+{
+	scalar_t from_ior = this->ior;
+
+	if(entering) {
+		return from_ior / mat_ior;
+	}
+
+	Ray tmp = *this;
+	tmp.leave();
+	return from_ior / tmp.ior;
+}

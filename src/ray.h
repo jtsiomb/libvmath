@@ -42,6 +42,8 @@ public:
 
 	void enter(scalar_t new_ior);
 	void leave();
+
+	scalar_t calc_ior(bool entering, scalar_t mat_ior = 1.0) const;
 };
 #endif	/* __cplusplus */
 

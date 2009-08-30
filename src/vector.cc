@@ -149,8 +149,12 @@ Vector3 Vector3::reflection(const Vector3 &normal) const
 
 Vector3 Vector3::refraction(const Vector3 &normal, scalar_t src_ior, scalar_t dst_ior) const
 {
+	return refraction(normal, src_ior / dst_ior);
+}
+
+Vector3 Vector3::refraction(const Vector3 &normal, scalar_t ior) const
+{
 	scalar_t cos_inc = dot_product(*this, -normal);
-	scalar_t ior = src_ior / dst_ior;
 
 	scalar_t radical = 1.0 + SQ(ior) * (SQ(cos_inc) - 1.0);
 
