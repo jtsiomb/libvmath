@@ -1,3 +1,5 @@
+#include <vector.h>
+
 static inline int curve_value(curve_t *c, float t, float val)
 {
 	vec4_t vec = {0, 0, 0, 0};
@@ -23,7 +25,7 @@ static inline float curve_eval(curve_t *c, float t)
 static inline vec3_t curve_eval3(curve_t *c, float t)
 {
 	vec4_t res = c->eval(c, t);
-	return *(vec3_t*)&res;
+	return v3_cons(res.x, res.y, res.z);
 }
 
 static inline vec4_t curve_eval4(curve_t *c, float t)
