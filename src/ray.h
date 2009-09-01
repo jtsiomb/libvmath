@@ -45,6 +45,9 @@ public:
 
 	scalar_t calc_ior(bool entering, scalar_t mat_ior = 1.0) const;
 };
+
+inline Ray reflect_ray(const Ray &inray, const Vector3 &norm);
+inline Ray refract_ray(const Ray &inray, const Vector3 &norm, scalar_t ior, bool entering, scalar_t ray_mag = -1.0);
 #endif	/* __cplusplus */
 
 #include "ray.inl"
