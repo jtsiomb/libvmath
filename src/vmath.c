@@ -8,7 +8,7 @@ scalar_t integral(scalar_t (*f)(scalar_t), scalar_t low, scalar_t high, int samp
 	int i;
 	scalar_t h = (high - low) / (scalar_t)samples;
 	scalar_t sum = 0.0;
-	
+
 	for(i=0; i<samples+1; i++) {
 		scalar_t y = f((scalar_t)i * h + low);
 		sum += ((!i || i == samples) ? y : ((i % 2) ? 4.0 * y : 2.0 * y)) * (h / 3.0);
@@ -36,7 +36,7 @@ scalar_t bspline(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t)
 		{-3,  0,  3,  0},
 		{1,  4,  1,  0}
 	};
-	
+
 	tmp = v4_scale(v4_transform(v4_cons(a, b, c, d), bspline_mat), 1.0 / 6.0);
 	return v4_dot(v4_cons(tsq * t, tsq, t, 1.0), tmp);
 }
@@ -127,7 +127,7 @@ static void init_noise()
 	/* fill up the rest of the arrays by duplicating the existing gradients */
 	/* and permutations */
 	for(i=0; i<B+2; i++) {
-		perm[B + i] = perm[i];	
+		perm[B + i] = perm[i];
 		grad1[B + i] = grad1[i];
 		grad2[B + i] = grad2[i];
 		grad3[B + i] = grad3[i];
@@ -223,7 +223,7 @@ scalar_t noise3(scalar_t x, scalar_t y, scalar_t z)
 	sx = s_curve(rx0);
 	sy = s_curve(ry0);
 	sz = s_curve(rz0);
-	
+
 	/* interpolate along the top slice of the cell */
 	u = v3_dot(grad3[b00 + bz0], v3_cons(rx0, ry0, rz0));
 	v = v3_dot(grad3[b10 + bz0], v3_cons(rx1, ry0, rz0));

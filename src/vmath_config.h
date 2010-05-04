@@ -14,6 +14,6 @@
 #endif	/* gcc/msvc */
 #endif	/* not C99 */
 
-#define SINGLE_PRECISION_MATH
+#undef SINGLE_PRECISION_MATH
 
 #endif	/* VMATH_CONFIG_H_ */
