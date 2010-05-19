@@ -35,7 +35,7 @@ void Vector2::normalize()
 }
 
 Vector2 Vector2::normalized() const
-{	
+{
 	scalar_t len = length();
 	return Vector2(x / len, y / len);
 }
@@ -64,7 +64,7 @@ Vector2 Vector2::rotated(scalar_t angle) const
 {
 	return Vector2(cos(angle) * x - sin(angle) * y, sin(angle) * x + cos(angle) * y);
 }
-	
+
 Vector2 Vector2::reflection(const Vector2 &normal) const
 {
 	return 2.0 * dot_product(*this, normal) * normal - *this;
@@ -133,7 +133,7 @@ void Vector3::normalize()
 	scalar_t len = length();
 	x /= len;
 	y /= len;
-	z /= len;	
+	z /= len;
 }
 
 Vector3 Vector3::normalized() const
@@ -231,13 +231,17 @@ Vector3 Vector3::rotated(const Vector3 &euler) const
 	return transformed(rot);
 }
 
+Vector3::operator scalar_t() const
+{
+	return (x + y + z) / 3.0;
+}
+
 
 std::ostream &operator <<(std::ostream &out, const Vector3 &vec)
 {
 	out << "[" << vec.x << " " << vec.y << " " << vec.z << "]";
 	return out;
 }
-
 
 
 // -------------- Vector4 --------------
