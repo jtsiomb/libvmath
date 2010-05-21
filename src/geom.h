@@ -4,7 +4,8 @@
 #include <vmath_types.h>
 
 typedef struct {
-	scalar_t nx, ny, nz, d;
+	vec3_t norm;
+	scalar_t d;
 } plane_t;
 
 #ifdef __cplusplus
