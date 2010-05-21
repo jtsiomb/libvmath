@@ -57,3 +57,19 @@ vec3_t plane_point(plane_t plane)
 {
 	return v3_scale(plane.norm, plane.d);
 }
+
+scalar_t plane_ray_intersect(ray_t ray, plane_t plane)
+{
+	vec3_t pt, orig_to_pt;
+	scalar_t ndotdir;
+
+	pt = plane_point(plane);
+	ndotdir = v3_dot(plane.norm, ray.dir);
+
+	if(fabs(ndotdir) < 1e-7) {
+		return -1.0;
+	}
+
+	orig_to_pt = v3_sub(pt, ray.origin);
+	return v3_dot(plane.norm, orig_to_pt) / ndotdir;
+}

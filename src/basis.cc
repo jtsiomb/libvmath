@@ -1,6 +1,5 @@
 #include "basis.h"
-#include "matrix.h"
-#include "vector.h"
+#include "vmath.h"
 
 Basis::Basis()
 {

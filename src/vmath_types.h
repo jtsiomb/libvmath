@@ -3,6 +3,11 @@
 
 #include "vmath_config.h"
 
+#define SMALL_NUMBER	1.e-4
+#define XSMALL_NUMBER	1.e-8
+#define ERROR_MARGIN	1.e-6
+
+
 #ifdef SINGLE_PRECISION_MATH
 typedef float scalar_t;
 #else

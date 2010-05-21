@@ -1,5 +1,5 @@
 #include "vector.h"
-#include "sphvec.h"
+#include "vmath.h"
 
 // ---------- Vector2 -----------
 

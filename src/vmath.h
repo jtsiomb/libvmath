@@ -17,10 +17,6 @@
 #define QUARTER_PI		0.785398163397448
 #define TWO_PI			6.283185307179586
 
-#define SMALL_NUMBER	1.e-4
-#define XSMALL_NUMBER	1.e-8
-#define ERROR_MARGIN	1.e-6
-
 
 #define RAD_TO_DEG(a) ((((scalar_t)a) * 360.0) / TWO_PI)
 #define DEG_TO_RAD(a) (((scalar_t)a) * (PI / 180.0))
@@ -47,7 +43,7 @@ scalar_t gaussian(scalar_t x, scalar_t mean, scalar_t sdev);
 static inline scalar_t lerp(scalar_t a, scalar_t b, scalar_t t);
 
 scalar_t bspline(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t);
-scalar_t catmull_rom_spline(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t);
+scalar_t spline(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t);
 scalar_t bezier(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t);
 
 scalar_t noise1(scalar_t x);
@@ -73,6 +69,6 @@ scalar_t turbulence3(scalar_t x, scalar_t y, scalar_t z, int octaves);
 #include "quat.h"
 #include "sphvec.h"
 #include "ray.h"
-#include "curves.h"
+#include "geom.h"
 
 #endif	/* VMATH_H_ */

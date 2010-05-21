@@ -1,7 +1,8 @@
 #ifndef GEOM_H_
 #define GEOM_H_
 
-#include <vmath_types.h>
+#include "vector.h"
+#include "ray.h"
 
 typedef struct {
 	vec3_t norm;
@@ -22,12 +23,14 @@ scalar_t plane_signed_dist(plane_t plane, vec3_t pt);
 scalar_t plane_dist(plane_t plane, vec3_t pt);
 vec3_t plane_point(plane_t plane);
 
+scalar_t plane_ray_intersect(ray_t ray, plane_t plane);
+
 #ifdef __cplusplus
 }
 
 class Plane : public plane_t {
 public:
-	// TODO
+	/* TODO */
 };
 
 #endif

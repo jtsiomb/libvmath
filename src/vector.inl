@@ -1,5 +1,4 @@
 #include <math.h>
-#include "vmath.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -64,6 +63,14 @@ static inline vec2_t v2_normalize(vec2_t v)
 	v.x /= len;
 	v.y /= len;
 	return v;
+}
+
+static inline vec2_t v2_lerp(vec2_t v1, vec2_t v2, scalar_t t)
+{
+	vec2_t res;
+	res.x = v1.x + (v2.x - v1.x) * t;
+	res.y = v1.y + (v2.y - v1.y) * t;
+	return res;
 }
 
 
@@ -431,8 +438,9 @@ inline Vector2 lerp(const Vector2 &a, const Vector2 &b, scalar_t t)
 inline Vector2 catmull_rom_spline(const Vector2 &v0, const Vector2 &v1,
 		const Vector2 &v2, const Vector2 &v3, scalar_t t)
 {
-	scalar_t x = catmull_rom_spline(v0.x, v1.x, v2.x, v3.x, t);
-	scalar_t y = catmull_rom_spline(v0.y, v1.y, v2.y, v3.y, t);
+	scalar_t spline(scalar_t, scalar_t, scalar_t, scalar_t, scalar_t);
+	scalar_t x = spline(v0.x, v1.x, v2.x, v3.x, t);
+	scalar_t y = spline(v0.y, v1.y, v2.y, v3.y, t);
 	return Vector2(x, y);
 }
 
@@ -576,9 +584,10 @@ inline Vector3 lerp(const Vector3 &a, const Vector3 &b, scalar_t t) {
 inline Vector3 catmull_rom_spline(const Vector3 &v0, const Vector3 &v1,
 		const Vector3 &v2, const Vector3 &v3, scalar_t t)
 {
-	scalar_t x = catmull_rom_spline(v0.x, v1.x, v2.x, v3.x, t);
-	scalar_t y = catmull_rom_spline(v0.y, v1.y, v2.y, v3.y, t);
-	scalar_t z = catmull_rom_spline(v0.z, v1.z, v2.z, v3.z, t);
+	scalar_t spline(scalar_t, scalar_t, scalar_t, scalar_t, scalar_t);
+	scalar_t x = spline(v0.x, v1.x, v2.x, v3.x, t);
+	scalar_t y = spline(v0.y, v1.y, v2.y, v3.y, t);
+	scalar_t z = spline(v0.z, v1.z, v2.z, v3.z, t);
 	return Vector3(x, y, z);
 }
 
@@ -637,8 +646,8 @@ inline Vector4 operator /(const Vector4 &v1, const Vector4 &v2) {
 }
 
 inline bool operator ==(const Vector4 &v1, const Vector4 &v2) {
-	return 	(fabs(v1.x - v2.x) < XSMALL_NUMBER) && 
-			(fabs(v1.y - v2.y) < XSMALL_NUMBER) && 
+	return	(fabs(v1.x - v2.x) < XSMALL_NUMBER) &&
+			(fabs(v1.y - v2.y) < XSMALL_NUMBER) &&
 			(fabs(v1.z - v2.z) < XSMALL_NUMBER) &&
 			(fabs(v1.w - v2.w) < XSMALL_NUMBER);
 }
@@ -747,10 +756,11 @@ inline Vector4 lerp(const Vector4 &v0, const Vector4 &v1, scalar_t t)
 inline Vector4 catmull_rom_spline(const Vector4 &v0, const Vector4 &v1,
 		const Vector4 &v2, const Vector4 &v3, scalar_t t)
 {
-	scalar_t x = catmull_rom_spline(v0.x, v1.x, v2.x, v3.x, t);
-	scalar_t y = catmull_rom_spline(v0.y, v1.y, v2.y, v3.y, t);
-	scalar_t z = catmull_rom_spline(v0.z, v1.z, v2.z, v3.z, t);
-	scalar_t w = catmull_rom_spline(v0.w, v1.w, v2.w, v3.w, t);
+	scalar_t spline(scalar_t, scalar_t, scalar_t, scalar_t, scalar_t);
+	scalar_t x = spline(v0.x, v1.x, v2.x, v3.x, t);
+	scalar_t y = spline(v0.y, v1.y, v2.y, v3.y, t);
+	scalar_t z = spline(v0.z, v1.z, v2.z, v3.z, t);
+	scalar_t w = spline(v0.w, v1.w, v2.w, v3.w, t);
 	return Vector4(x, y, z, w);
 }
 

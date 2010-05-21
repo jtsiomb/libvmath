@@ -1,4 +1,5 @@
 #include "ray.h"
+#include "vector.h"
 
 scalar_t Ray::env_ior = 1.0;
 

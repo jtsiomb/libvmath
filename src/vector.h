@@ -20,6 +20,8 @@ static inline scalar_t v2_length(vec2_t v);
 static inline scalar_t v2_length_sq(vec2_t v);
 static inline vec2_t v2_normalize(vec2_t v);
 
+static inline vec2_t v2_lerp(vec2_t v1, vec2_t v2, scalar_t t);
+
 /* C 3D vector functions */
 static inline vec3_t v3_cons(scalar_t x, scalar_t y, scalar_t z);
 static inline void v3_print(FILE *fp, vec3_t v);

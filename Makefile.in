@@ -1,6 +1,7 @@
 csrc = $(wildcard src/*.c)
 ccsrc = $(wildcard src/*.cc)
 obj = $(csrc:.c=.o) $(ccsrc:.cc=.o)
+depfiles = $(obj:.o=.d)
 
 lib_a = libvmath.a
 lib_so = libvmath.$(so)
@@ -37,13 +38,19 @@ uninstall:
 	rmdir $(PREFIX)/include/vmath
 	rm -f $(PREFIX)/lib/pkgconfig/vmath.pc
 
+-include $(depfiles)
+
+%.d: %.c
+	@$(CPP) $(CFLAGS) -MM -MT $(@:.d=.o) $< >$@
+
+
 .PHONY: clean
 clean:
-	rm -f $(obj)
+	rm -f $(obj) $(depfiles)
 
 .PHONY: distclean
 distclean:
-	rm -f $(obj) $(lib_so) $(lib_a) Makefile vmath.pc
+	rm -f $(obj) $(depfiles) $(lib_so) $(lib_a) Makefile vmath.pc
 
 .PHONY: dist
 dist: distclean

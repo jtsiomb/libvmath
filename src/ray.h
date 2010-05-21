@@ -1,8 +1,8 @@
 #ifndef VMATH_RAY_H_
 #define VMATH_RAY_H_
 
-#include "vector.h"
 #include "matrix.h"
+#include "vector.h"
 
 typedef struct {
 	vec3_t origin, dir;

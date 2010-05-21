@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include "matrix.h"
 #include "vector.h"
+#include "quat.h"
 
 void m3_to_m4(mat4_t dest, mat3_t src)
 {
 	int i, j;
-	
+
 	memset(dest, 0, sizeof(mat4_t));
 	for(i=0; i<3; i++) {
 		for(j=0; j<3; j++) {
