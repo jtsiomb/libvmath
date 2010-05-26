@@ -201,8 +201,6 @@ public:
 	Vector3 refraction(const Vector3 &normal, scalar_t src_ior, scalar_t dst_ior) const;
 	Vector3 refraction(const Vector3 &normal, scalar_t ior) const;
 
-	operator scalar_t() const;
-
 	friend std::ostream &operator <<(std::ostream &out, const Vector3 &vec);
 };
 

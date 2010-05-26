@@ -231,12 +231,6 @@ Vector3 Vector3::rotated(const Vector3 &euler) const
 	return transformed(rot);
 }
 
-Vector3::operator scalar_t() const
-{
-	return (x + y + z) / 3.0;
-}
-
-
 std::ostream &operator <<(std::ostream &out, const Vector3 &vec)
 {
 	out << "[" << vec.x << " " << vec.y << " " << vec.z << "]";
