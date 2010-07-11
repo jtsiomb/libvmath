@@ -80,38 +80,6 @@ public:
 	inline scalar_t &operator [](int elem);
 	inline const scalar_t &operator [](int elem) const;
 
-	/* unary operations */
-	friend inline Vector2 operator -(const Vector2 &vec);
-
-	/* binary vector (op) vector operations */
-	friend inline scalar_t dot_product(const Vector2 &v1, const Vector2 &v2);
-
-	friend inline Vector2 operator +(const Vector2 &v1, const Vector2 &v2);
-	friend inline Vector2 operator -(const Vector2 &v1, const Vector2 &v2);
-	friend inline Vector2 operator *(const Vector2 &v1, const Vector2 &v2);
-	friend inline Vector2 operator /(const Vector2 &v1, const Vector2 &v2);
-	friend inline bool operator ==(const Vector2 &v1, const Vector2 &v2);
-
-	friend inline void operator +=(Vector2 &v1, const Vector2 &v2);
-	friend inline void operator -=(Vector2 &v1, const Vector2 &v2);
-	friend inline void operator *=(Vector2 &v1, const Vector2 &v2);
-	friend inline void operator /=(Vector2 &v1, const Vector2 &v2);
-
-	/* binary vector (op) scalar and scalar (op) vector operations */
-	friend inline Vector2 operator +(const Vector2 &vec, scalar_t scalar);
-	friend inline Vector2 operator +(scalar_t scalar, const Vector2 &vec);
-	friend inline Vector2 operator -(const Vector2 &vec, scalar_t scalar);
-	friend inline Vector2 operator -(scalar_t scalar, const Vector2 &vec);
-	friend inline Vector2 operator *(const Vector2 &vec, scalar_t scalar);
-	friend inline Vector2 operator *(scalar_t scalar, const Vector2 &vec);
-	friend inline Vector2 operator /(const Vector2 &vec, scalar_t scalar);
-	friend inline Vector2 operator /(scalar_t scalar, const Vector2 &vec);
-
-	friend inline void operator +=(Vector2 &vec, scalar_t scalar);
-	friend inline void operator -=(Vector2 &vec, scalar_t scalar);
-	friend inline void operator *=(Vector2 &vec, scalar_t scalar);
-	friend inline void operator /=(Vector2 &vec, scalar_t scalar);
-
 	inline scalar_t length() const;
 	inline scalar_t length_sq() const;
 	void normalize();
@@ -125,9 +93,39 @@ public:
 
 	Vector2 reflection(const Vector2 &normal) const;
 	Vector2 refraction(const Vector2 &normal, scalar_t src_ior, scalar_t dst_ior) const;
-
-	friend std::ostream &operator <<(std::ostream &out, const Vector2 &vec);
 };
+
+/* unary operations */
+inline Vector2 operator -(const Vector2 &vec);
+
+/* binary vector (op) vector operations */
+inline scalar_t dot_product(const Vector2 &v1, const Vector2 &v2);
+
+inline Vector2 operator +(const Vector2 &v1, const Vector2 &v2);
+inline Vector2 operator -(const Vector2 &v1, const Vector2 &v2);
+inline Vector2 operator *(const Vector2 &v1, const Vector2 &v2);
+inline Vector2 operator /(const Vector2 &v1, const Vector2 &v2);
+inline bool operator ==(const Vector2 &v1, const Vector2 &v2);
+
+inline void operator +=(Vector2 &v1, const Vector2 &v2);
+inline void operator -=(Vector2 &v1, const Vector2 &v2);
+inline void operator *=(Vector2 &v1, const Vector2 &v2);
+inline void operator /=(Vector2 &v1, const Vector2 &v2);
+
+/* binary vector (op) scalar and scalar (op) vector operations */
+inline Vector2 operator +(const Vector2 &vec, scalar_t scalar);
+inline Vector2 operator +(scalar_t scalar, const Vector2 &vec);
+inline Vector2 operator -(const Vector2 &vec, scalar_t scalar);
+inline Vector2 operator *(const Vector2 &vec, scalar_t scalar);
+inline Vector2 operator *(scalar_t scalar, const Vector2 &vec);
+inline Vector2 operator /(const Vector2 &vec, scalar_t scalar);
+
+inline void operator +=(Vector2 &vec, scalar_t scalar);
+inline void operator -=(Vector2 &vec, scalar_t scalar);
+inline void operator *=(Vector2 &vec, scalar_t scalar);
+inline void operator /=(Vector2 &vec, scalar_t scalar);
+
+std::ostream &operator <<(std::ostream &out, const Vector2 &vec);
 
 inline Vector2 lerp(const Vector2 &a, const Vector2 &b, scalar_t t);
 inline Vector2 catmull_rom_spline(const Vector2 &v0, const Vector2 &v1,
@@ -149,39 +147,6 @@ public:
 	inline scalar_t &operator [](int elem);
 	inline const scalar_t &operator [](int elem) const;
 
-	/* unary operations */
-	friend inline Vector3 operator -(const Vector3 &vec);
-
-	/* binary vector (op) vector operations */
-	friend inline scalar_t dot_product(const Vector3 &v1, const Vector3 &v2);
-	friend inline Vector3 cross_product(const Vector3 &v1, const Vector3 &v2);
-
-	friend inline Vector3 operator +(const Vector3 &v1, const Vector3 &v2);
-	friend inline Vector3 operator -(const Vector3 &v1, const Vector3 &v2);
-	friend inline Vector3 operator *(const Vector3 &v1, const Vector3 &v2);
-	friend inline Vector3 operator /(const Vector3 &v1, const Vector3 &v2);
-	friend inline bool operator ==(const Vector3 &v1, const Vector3 &v2);
-
-	friend inline void operator +=(Vector3 &v1, const Vector3 &v2);
-	friend inline void operator -=(Vector3 &v1, const Vector3 &v2);
-	friend inline void operator *=(Vector3 &v1, const Vector3 &v2);
-	friend inline void operator /=(Vector3 &v1, const Vector3 &v2);
-
-	/* binary vector (op) scalar and scalar (op) vector operations */
-	friend inline Vector3 operator +(const Vector3 &vec, scalar_t scalar);
-	friend inline Vector3 operator +(scalar_t scalar, const Vector3 &vec);
-	friend inline Vector3 operator -(const Vector3 &vec, scalar_t scalar);
-	friend inline Vector3 operator -(scalar_t scalar, const Vector3 &vec);
-	friend inline Vector3 operator *(const Vector3 &vec, scalar_t scalar);
-	friend inline Vector3 operator *(scalar_t scalar, const Vector3 &vec);
-	friend inline Vector3 operator /(const Vector3 &vec, scalar_t scalar);
-	friend inline Vector3 operator /(scalar_t scalar, const Vector3 &vec);
-
-	friend inline void operator +=(Vector3 &vec, scalar_t scalar);
-	friend inline void operator -=(Vector3 &vec, scalar_t scalar);
-	friend inline void operator *=(Vector3 &vec, scalar_t scalar);
-	friend inline void operator /=(Vector3 &vec, scalar_t scalar);
-
 	inline scalar_t length() const;
 	inline scalar_t length_sq() const;
 	void normalize();
@@ -200,9 +165,40 @@ public:
 	Vector3 reflection(const Vector3 &normal) const;
 	Vector3 refraction(const Vector3 &normal, scalar_t src_ior, scalar_t dst_ior) const;
 	Vector3 refraction(const Vector3 &normal, scalar_t ior) const;
-
-	friend std::ostream &operator <<(std::ostream &out, const Vector3 &vec);
 };
+
+/* unary operations */
+inline Vector3 operator -(const Vector3 &vec);
+
+/* binary vector (op) vector operations */
+inline scalar_t dot_product(const Vector3 &v1, const Vector3 &v2);
+inline Vector3 cross_product(const Vector3 &v1, const Vector3 &v2);
+
+inline Vector3 operator +(const Vector3 &v1, const Vector3 &v2);
+inline Vector3 operator -(const Vector3 &v1, const Vector3 &v2);
+inline Vector3 operator *(const Vector3 &v1, const Vector3 &v2);
+inline Vector3 operator /(const Vector3 &v1, const Vector3 &v2);
+inline bool operator ==(const Vector3 &v1, const Vector3 &v2);
+
+inline void operator +=(Vector3 &v1, const Vector3 &v2);
+inline void operator -=(Vector3 &v1, const Vector3 &v2);
+inline void operator *=(Vector3 &v1, const Vector3 &v2);
+inline void operator /=(Vector3 &v1, const Vector3 &v2);
+
+/* binary vector (op) scalar and scalar (op) vector operations */
+inline Vector3 operator +(const Vector3 &vec, scalar_t scalar);
+inline Vector3 operator +(scalar_t scalar, const Vector3 &vec);
+inline Vector3 operator -(const Vector3 &vec, scalar_t scalar);
+inline Vector3 operator *(const Vector3 &vec, scalar_t scalar);
+inline Vector3 operator *(scalar_t scalar, const Vector3 &vec);
+inline Vector3 operator /(const Vector3 &vec, scalar_t scalar);
+
+inline void operator +=(Vector3 &vec, scalar_t scalar);
+inline void operator -=(Vector3 &vec, scalar_t scalar);
+inline void operator *=(Vector3 &vec, scalar_t scalar);
+inline void operator /=(Vector3 &vec, scalar_t scalar);
+
+std::ostream &operator <<(std::ostream &out, const Vector3 &vec);
 
 inline Vector3 lerp(const Vector3 &a, const Vector3 &b, scalar_t t);
 inline Vector3 catmull_rom_spline(const Vector3 &v0, const Vector3 &v1,
@@ -221,39 +217,6 @@ public:
 	inline scalar_t &operator [](int elem);
 	inline const scalar_t &operator [](int elem) const;
 
-	/* unary operations */
-	friend inline Vector4 operator -(const Vector4 &vec);
-
-	/* binary vector (op) vector operations */
-	friend inline scalar_t dot_product(const Vector4 &v1, const Vector4 &v2);
-	friend inline Vector4 cross_product(const Vector4 &v1, const Vector4 &v2, const Vector4 &v3);
-
-	friend inline Vector4 operator +(const Vector4 &v1, const Vector4 &v2);
-	friend inline Vector4 operator -(const Vector4 &v1, const Vector4 &v2);
-	friend inline Vector4 operator *(const Vector4 &v1, const Vector4 &v2);
-	friend inline Vector4 operator /(const Vector4 &v1, const Vector4 &v2);
-	friend inline bool operator ==(const Vector4 &v1, const Vector4 &v2);
-
-	friend inline void operator +=(Vector4 &v1, const Vector4 &v2);
-	friend inline void operator -=(Vector4 &v1, const Vector4 &v2);
-	friend inline void operator *=(Vector4 &v1, const Vector4 &v2);
-	friend inline void operator /=(Vector4 &v1, const Vector4 &v2);
-
-	/* binary vector (op) scalar and scalar (op) vector operations */
-	friend inline Vector4 operator +(const Vector4 &vec, scalar_t scalar);
-	friend inline Vector4 operator +(scalar_t scalar, const Vector4 &vec);
-	friend inline Vector4 operator -(const Vector4 &vec, scalar_t scalar);
-	friend inline Vector4 operator -(scalar_t scalar, const Vector4 &vec);
-	friend inline Vector4 operator *(const Vector4 &vec, scalar_t scalar);
-	friend inline Vector4 operator *(scalar_t scalar, const Vector4 &vec);
-	friend inline Vector4 operator /(const Vector4 &vec, scalar_t scalar);
-	friend inline Vector4 operator /(scalar_t scalar, const Vector4 &vec);
-
-	friend inline void operator +=(Vector4 &vec, scalar_t scalar);
-	friend inline void operator -=(Vector4 &vec, scalar_t scalar);
-	friend inline void operator *=(Vector4 &vec, scalar_t scalar);
-	friend inline void operator /=(Vector4 &vec, scalar_t scalar);
-
 	inline scalar_t length() const;
 	inline scalar_t length_sq() const;
 	void normalize();
@@ -264,9 +227,41 @@ public:
 
 	Vector4 reflection(const Vector4 &normal) const;
 	Vector4 refraction(const Vector4 &normal, scalar_t src_ior, scalar_t dst_ior) const;
-
-	friend std::ostream &operator <<(std::ostream &out, const Vector4 &vec);
 };
+
+
+/* unary operations */
+inline Vector4 operator -(const Vector4 &vec);
+
+/* binary vector (op) vector operations */
+inline scalar_t dot_product(const Vector4 &v1, const Vector4 &v2);
+inline Vector4 cross_product(const Vector4 &v1, const Vector4 &v2, const Vector4 &v3);
+
+inline Vector4 operator +(const Vector4 &v1, const Vector4 &v2);
+inline Vector4 operator -(const Vector4 &v1, const Vector4 &v2);
+inline Vector4 operator *(const Vector4 &v1, const Vector4 &v2);
+inline Vector4 operator /(const Vector4 &v1, const Vector4 &v2);
+inline bool operator ==(const Vector4 &v1, const Vector4 &v2);
+
+inline void operator +=(Vector4 &v1, const Vector4 &v2);
+inline void operator -=(Vector4 &v1, const Vector4 &v2);
+inline void operator *=(Vector4 &v1, const Vector4 &v2);
+inline void operator /=(Vector4 &v1, const Vector4 &v2);
+
+/* binary vector (op) scalar and scalar (op) vector operations */
+inline Vector4 operator +(const Vector4 &vec, scalar_t scalar);
+inline Vector4 operator +(scalar_t scalar, const Vector4 &vec);
+inline Vector4 operator -(const Vector4 &vec, scalar_t scalar);
+inline Vector4 operator *(const Vector4 &vec, scalar_t scalar);
+inline Vector4 operator *(scalar_t scalar, const Vector4 &vec);
+inline Vector4 operator /(const Vector4 &vec, scalar_t scalar);
+
+inline void operator +=(Vector4 &vec, scalar_t scalar);
+inline void operator -=(Vector4 &vec, scalar_t scalar);
+inline void operator *=(Vector4 &vec, scalar_t scalar);
+inline void operator /=(Vector4 &vec, scalar_t scalar);
+
+std::ostream &operator <<(std::ostream &out, const Vector4 &vec);
 
 inline Vector4 lerp(const Vector4 &v0, const Vector4 &v1, scalar_t t);
 inline Vector4 catmull_rom_spline(const Vector4 &v0, const Vector4 &v1,

@@ -378,10 +378,6 @@ inline Vector2 operator +(scalar_t scalar, const Vector2 &vec) {
 	return Vector2(vec.x + scalar, vec.y + scalar);
 }
 
-inline Vector2 operator -(const Vector2 &vec, scalar_t scalar) {
-	return Vector2(vec.x - scalar, vec.y - scalar);
-}
-
 inline Vector2 operator -(scalar_t scalar, const Vector2 &vec) {
 	return Vector2(vec.x - scalar, vec.y - scalar);
 }
@@ -395,10 +391,6 @@ inline Vector2 operator *(scalar_t scalar, const Vector2 &vec) {
 }
 
 inline Vector2 operator /(const Vector2 &vec, scalar_t scalar) {
-	return Vector2(vec.x / scalar, vec.y / scalar);
-}
-
-inline Vector2 operator /(scalar_t scalar, const Vector2 &vec) {
 	return Vector2(vec.x / scalar, vec.y / scalar);
 }
 
@@ -526,10 +518,6 @@ inline Vector3 operator -(const Vector3 &vec, scalar_t scalar) {
 	return Vector3(vec.x - scalar, vec.y - scalar, vec.z - scalar);
 }
 
-inline Vector3 operator -(scalar_t scalar, const Vector3 &vec) {
-	return Vector3(vec.x - scalar, vec.y - scalar, vec.z - scalar);
-}
-
 inline Vector3 operator *(const Vector3 &vec, scalar_t scalar) {
 	return Vector3(vec.x * scalar, vec.y * scalar, vec.z * scalar);
 }
@@ -539,10 +527,6 @@ inline Vector3 operator *(scalar_t scalar, const Vector3 &vec) {
 }
 
 inline Vector3 operator /(const Vector3 &vec, scalar_t scalar) {
-	return Vector3(vec.x / scalar, vec.y / scalar, vec.z / scalar);
-}
-
-inline Vector3 operator /(scalar_t scalar, const Vector3 &vec) {
 	return Vector3(vec.x / scalar, vec.y / scalar, vec.z / scalar);
 }
 
@@ -693,10 +677,6 @@ inline Vector4 operator -(const Vector4 &vec, scalar_t scalar) {
 	return Vector4(vec.x - scalar, vec.y - scalar, vec.z - scalar, vec.w - scalar);
 }
 
-inline Vector4 operator -(scalar_t scalar, const Vector4 &vec) {
-	return Vector4(vec.x - scalar, vec.y - scalar, vec.z - scalar, vec.w - scalar);
-}
-
 inline Vector4 operator *(const Vector4 &vec, scalar_t scalar) {
 	return Vector4(vec.x * scalar, vec.y * scalar, vec.z * scalar, vec.w * scalar);
 }
@@ -706,10 +686,6 @@ inline Vector4 operator *(scalar_t scalar, const Vector4 &vec) {
 }
 
 inline Vector4 operator /(const Vector4 &vec, scalar_t scalar) {
-	return Vector4(vec.x / scalar, vec.y / scalar, vec.z / scalar, vec.w / scalar);
-}
-
-inline Vector4 operator /(scalar_t scalar, const Vector4 &vec) {
 	return Vector4(vec.x / scalar, vec.y / scalar, vec.z / scalar, vec.w / scalar);
 }
 
