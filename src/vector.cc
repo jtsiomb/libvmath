@@ -144,7 +144,7 @@ Vector3 Vector3::normalized() const
 
 Vector3 Vector3::reflection(const Vector3 &normal) const
 {
-	return -(2.0 * dot_product(*this, normal) * normal - *this);
+	return 2.0 * dot_product(*this, normal) * normal - *this;
 }
 
 Vector3 Vector3::refraction(const Vector3 &normal, scalar_t src_ior, scalar_t dst_ior) const
@@ -159,7 +159,7 @@ Vector3 Vector3::refraction(const Vector3 &normal, scalar_t ior) const
 	scalar_t radical = 1.0 + SQ(ior) * (SQ(cos_inc) - 1.0);
 
 	if(radical < 0.0) {		// total internal reflection
-		return reflection(normal);
+		return -reflection(normal);
 	}
 
 	scalar_t beta = ior * cos_inc - sqrt(radical);
