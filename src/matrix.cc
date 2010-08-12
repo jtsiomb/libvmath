@@ -43,7 +43,7 @@ Matrix3x3 operator +(const Matrix3x3 &m1, const Matrix3x3 &m2)
 	Matrix3x3 res;
 	const scalar_t *op1 = m1.m[0], *op2 = m2.m[0];
 	scalar_t *dest = res.m[0];
-	
+
 	for(int i=0; i<9; i++) {
 		*dest++ = *op1++ + *op2++;
 	}
@@ -55,7 +55,7 @@ Matrix3x3 operator -(const Matrix3x3 &m1, const Matrix3x3 &m2)
 	Matrix3x3 res;
 	const scalar_t *op1 = m1.m[0], *op2 = m2.m[0];
 	scalar_t *dest = res.m[0];
-	
+
 	for(int i=0; i<9; i++) {
 		*dest++ = *op1++ - *op2++;
 	}
@@ -77,7 +77,7 @@ void operator +=(Matrix3x3 &m1, const Matrix3x3 &m2)
 {
 	scalar_t *op1 = m1.m[0];
 	const scalar_t *op2 = m2.m[0];
-	
+
 	for(int i=0; i<9; i++) {
 		*op1++ += *op2++;
 	}
@@ -87,7 +87,7 @@ void operator -=(Matrix3x3 &m1, const Matrix3x3 &m2)
 {
 	scalar_t *op1 = m1.m[0];
 	const scalar_t *op2 = m2.m[0];
-	
+
 	for(int i=0; i<9; i++) {
 		*op1++ -= *op2++;
 	}
@@ -109,7 +109,7 @@ Matrix3x3 operator *(const Matrix3x3 &mat, scalar_t scalar)
 	Matrix3x3 res;
 	const scalar_t *mptr = mat.m[0];
 	scalar_t *dptr = res.m[0];
-	
+
 	for(int i=0; i<9; i++) {
 		*dptr++ = *mptr++ * scalar;
 	}
@@ -121,7 +121,7 @@ Matrix3x3 operator *(scalar_t scalar, const Matrix3x3 &mat)
 	Matrix3x3 res;
 	const scalar_t *mptr = mat.m[0];
 	scalar_t *dptr = res.m[0];
-	
+
 	for(int i=0; i<9; i++) {
 		*dptr++ = *mptr++ * scalar;
 	}
@@ -131,7 +131,7 @@ Matrix3x3 operator *(scalar_t scalar, const Matrix3x3 &mat)
 void operator *=(Matrix3x3 &mat, scalar_t scalar)
 {
 	scalar_t *mptr = mat.m[0];
-	
+
 	for(int i=0; i<9; i++) {
 		*mptr++ *= scalar;
 	}
@@ -152,8 +152,8 @@ void Matrix3x3::rotate(scalar_t angle)
 {
 	scalar_t cos_a = cos(angle);
 	scalar_t sin_a = sin(angle);
-	Matrix3x3 rmat(	cos_a, 	-sin_a, 	0,
-					sin_a, 	cos_a, 		0,
+	Matrix3x3 rmat(	cos_a,	-sin_a,		0,
+					sin_a,	cos_a,		0,
 					0,		0,			1);
 	*this *= rmat;
 }
@@ -168,38 +168,38 @@ void Matrix3x3::set_rotation(scalar_t angle)
 void Matrix3x3::rotate(const Vector3 &euler_angles)
 {
 	Matrix3x3 xrot, yrot, zrot;
-	
+
 	xrot = Matrix3x3(	1,			0,					0,
 						0,	cos(euler_angles.x),	-sin(euler_angles.x),
 						0,	sin(euler_angles.x),	cos(euler_angles.x));
-	
+
 	yrot = Matrix3x3(	cos(euler_angles.y),	0,	sin(euler_angles.y),
 								0,				1,				0,
 						-sin(euler_angles.y),	0,	cos(euler_angles.y));
-	
+
 	zrot = Matrix3x3(	cos(euler_angles.z),	-sin(euler_angles.z),	0,
 						sin(euler_angles.z),	cos(euler_angles.z),	0,
 								0,						0,				1);
-	
+
 	*this *= xrot * yrot * zrot;
 }
 
 void Matrix3x3::set_rotation(const Vector3 &euler_angles)
 {
 	Matrix3x3 xrot, yrot, zrot;
-	
+
 	xrot = Matrix3x3(	1,			0,					0,
 						0,	cos(euler_angles.x),	-sin(euler_angles.x),
 						0,	sin(euler_angles.x),	cos(euler_angles.x));
-	
+
 	yrot = Matrix3x3(	cos(euler_angles.y),	0,	sin(euler_angles.y),
 								0,				1,				0,
 						-sin(euler_angles.y),	0,	cos(euler_angles.y));
-	
+
 	zrot = Matrix3x3(	cos(euler_angles.z),	-sin(euler_angles.z),	0,
 						sin(euler_angles.z),	cos(euler_angles.z),	0,
 								0,						0,				1);
-	
+
 	*this = xrot * yrot * zrot;
 }
 
@@ -216,9 +216,11 @@ void Matrix3x3::rotate(const Vector3 &axis, scalar_t angle)
 	xform.m[0][0] = nxsq + (1-nxsq) * cosa;
 	xform.m[0][1] = axis.x * axis.y * invcosa - axis.z * sina;
 	xform.m[0][2] = axis.x * axis.z * invcosa + axis.y * sina;
+
 	xform.m[1][0] = axis.x * axis.y * invcosa + axis.z * sina;
 	xform.m[1][1] = nysq + (1-nysq) * cosa;
 	xform.m[1][2] = axis.y * axis.z * invcosa - axis.x * sina;
+
 	xform.m[2][0] = axis.x * axis.z * invcosa - axis.y * sina;
 	xform.m[2][1] = axis.y * axis.z * invcosa + axis.x * sina;
 	xform.m[2][2] = nzsq + (1-nzsq) * cosa;
@@ -718,9 +720,9 @@ Matrix4x4 Matrix4x4::adjoint() const
 
 Matrix4x4 Matrix4x4::inverse() const
 {
-	Matrix4x4 AdjMat = adjoint();
+	Matrix4x4 adj = adjoint();
 
-	return AdjMat * (1.0f / determinant());
+	return adj * (1.0f / determinant());
 }
 
 ostream &operator <<(ostream &out, const Matrix4x4 &mat)

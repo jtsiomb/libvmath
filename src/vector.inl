@@ -594,7 +594,7 @@ inline scalar_t dot_product(const Vector4 &v1, const Vector4 &v2) {
 }
 
 inline Vector4 cross_product(const Vector4 &v1, const Vector4 &v2, const Vector4 &v3) {
-	float  a, b, c, d, e, f;       /* Intermediate Values */
+	scalar_t a, b, c, d, e, f;       /* Intermediate Values */
     Vector4 result;
 
     /* Calculate intermediate values. */
