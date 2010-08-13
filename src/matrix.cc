@@ -374,7 +374,7 @@ Matrix4x4 operator +(const Matrix4x4 &m1, const Matrix4x4 &m2)
 	Matrix4x4 res;
 	const scalar_t *op1 = m1.m[0], *op2 = m2.m[0];
 	scalar_t *dest = res.m[0];
-	
+
 	for(int i=0; i<16; i++) {
 		*dest++ = *op1++ + *op2++;
 	}
@@ -386,7 +386,7 @@ Matrix4x4 operator -(const Matrix4x4 &m1, const Matrix4x4 &m2)
 	Matrix4x4 res;
 	const scalar_t *op1 = m1.m[0], *op2 = m2.m[0];
 	scalar_t *dest = res.m[0];
-	
+
 	for(int i=0; i<16; i++) {
 		*dest++ = *op1++ - *op2++;
 	}
@@ -396,7 +396,7 @@ Matrix4x4 operator -(const Matrix4x4 &m1, const Matrix4x4 &m2)
 /*
 Matrix4x4 operator *(const Matrix4x4 &m1, const Matrix4x4 &m2) {
 	Matrix4x4 res;
-	
+
 	for(int i=0; i<4; i++) {
 		for(int j=0; j<4; j++) {
 			res.m[i][j] = m1.m[i][0] * m2.m[0][j] + m1.m[i][1] * m2.m[1][j] + m1.m[i][2] * m2.m[2][j] + m1.m[i][3] * m2.m[3][j];
@@ -411,7 +411,7 @@ void operator +=(Matrix4x4 &m1, const Matrix4x4 &m2)
 {
 	scalar_t *op1 = m1.m[0];
 	const scalar_t *op2 = m2.m[0];
-	
+
 	for(int i=0; i<16; i++) {
 		*op1++ += *op2++;
 	}
@@ -421,7 +421,7 @@ void operator -=(Matrix4x4 &m1, const Matrix4x4 &m2)
 {
 	scalar_t *op1 = m1.m[0];
 	const scalar_t *op2 = m2.m[0];
-	
+
 	for(int i=0; i<16; i++) {
 		*op1++ -= *op2++;
 	}
@@ -443,7 +443,7 @@ Matrix4x4 operator *(const Matrix4x4 &mat, scalar_t scalar)
 	Matrix4x4 res;
 	const scalar_t *mptr = mat.m[0];
 	scalar_t *dptr = res.m[0];
-	
+
 	for(int i=0; i<16; i++) {
 		*dptr++ = *mptr++ * scalar;
 	}
@@ -455,7 +455,7 @@ Matrix4x4 operator *(scalar_t scalar, const Matrix4x4 &mat)
 	Matrix4x4 res;
 	const scalar_t *mptr = mat.m[0];
 	scalar_t *dptr = res.m[0];
-	
+
 	for(int i=0; i<16; i++) {
 		*dptr++ = *mptr++ * scalar;
 	}
@@ -465,7 +465,7 @@ Matrix4x4 operator *(scalar_t scalar, const Matrix4x4 &mat)
 void operator *=(Matrix4x4 &mat, scalar_t scalar)
 {
 	scalar_t *mptr = mat.m[0];
-	
+
 	for(int i=0; i<16; i++) {
 		*mptr++ *= scalar;
 	}
@@ -485,38 +485,38 @@ void Matrix4x4::set_translation(const Vector3 &trans)
 void Matrix4x4::rotate(const Vector3 &euler_angles)
 {
 	Matrix3x3 xrot, yrot, zrot;
-	
+
 	xrot = Matrix3x3(	1,			0,					0,
 						0,	cos(euler_angles.x),	-sin(euler_angles.x),
 						0,	sin(euler_angles.x),	cos(euler_angles.x));
-	
+
 	yrot = Matrix3x3(	cos(euler_angles.y),	0,	sin(euler_angles.y),
 								0,				1,				0,
 						-sin(euler_angles.y),	0,	cos(euler_angles.y));
-	
+
 	zrot = Matrix3x3(	cos(euler_angles.z),	-sin(euler_angles.z),	0,
 						sin(euler_angles.z),	cos(euler_angles.z),	0,
 								0,						0,				1);
-	
+
 	*this *= Matrix4x4(xrot * yrot * zrot);
 }
 
 void Matrix4x4::set_rotation(const Vector3 &euler_angles)
 {
 	Matrix3x3 xrot, yrot, zrot;
-	
+
 	xrot = Matrix3x3(	1,			0,					0,
 						0,	cos(euler_angles.x),	-sin(euler_angles.x),
 						0,	sin(euler_angles.x),	cos(euler_angles.x));
-	
+
 	yrot = Matrix3x3(	cos(euler_angles.y),	0,	sin(euler_angles.y),
 								0,				1,				0,
 						-sin(euler_angles.y),	0,	cos(euler_angles.y));
-	
+
 	zrot = Matrix3x3(	cos(euler_angles.z),	-sin(euler_angles.z),	0,
 						sin(euler_angles.z),	cos(euler_angles.z),	0,
 								0,						0,				1);
-	
+
 	*this = Matrix4x4(xrot * yrot * zrot);
 }
 
