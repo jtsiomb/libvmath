@@ -60,7 +60,7 @@ public:
 	Quaternion operator -(const Quaternion &quat) const;
 	Quaternion operator -() const;
 	Quaternion operator *(const Quaternion &quat) const;
-	
+
 	void operator +=(const Quaternion &quat);
 	void operator -=(const Quaternion &quat);
 	void operator *=(const Quaternion &quat);
@@ -71,7 +71,7 @@ public:
 
 	scalar_t length() const;
 	scalar_t length_sq() const;
-	
+
 	void normalize();
 	Quaternion normalized() const;
 
@@ -86,9 +86,9 @@ public:
 	void rotate(const Quaternion &q);
 
 	Matrix3x3 get_rotation_matrix() const;
-	
+
 	friend Quaternion slerp(const Quaternion &q1, const Quaternion &q2, scalar_t t);
-	
+
 	friend std::ostream &operator <<(std::ostream &out, const Quaternion &q);
 };
 

@@ -44,10 +44,11 @@ int sphere_sphere_intersect(sphere_t sph1, sphere_t sph2, scalar_t *pos, scalar_
 #ifdef __cplusplus
 }
 
+/* TODO
 class Plane : public plane_t {
 public:
-	/* TODO */
 };
+*/
 
 #endif
 

@@ -72,7 +72,7 @@ class Vector2 {
 public:
 	scalar_t x, y;
 
-	Vector2(scalar_t x = 0.0, scalar_t y = 0.0);
+	explicit Vector2(scalar_t x = 0.0, scalar_t y = 0.0);
 	Vector2(const vec2_t &vec);
 	Vector2(const Vector3 &vec);
 	Vector2(const Vector4 &vec);
@@ -136,7 +136,7 @@ class Vector3 {
 public:
 	scalar_t x, y, z;
 
-	Vector3(scalar_t x = 0.0, scalar_t y = 0.0, scalar_t z = 0.0);
+	explicit Vector3(scalar_t x = 0.0, scalar_t y = 0.0, scalar_t z = 0.0);
 	Vector3(const vec3_t &vec);
 	Vector3(const Vector2 &vec);
 	Vector3(const Vector4 &vec);
@@ -209,7 +209,7 @@ class Vector4 {
 public:
 	scalar_t x, y, z, w;
 
-	Vector4(scalar_t x = 0.0, scalar_t y = 0.0, scalar_t z = 0.0, scalar_t w = 0.0);
+	explicit Vector4(scalar_t x = 0.0, scalar_t y = 0.0, scalar_t z = 0.0, scalar_t w = 0.0);
 	Vector4(const vec4_t &vec);
 	Vector4(const Vector2 &vec);
 	Vector4(const Vector3 &vec);

@@ -201,7 +201,7 @@ static inline vec3_t v3_rotate_quat(vec3_t v, quat_t q)
 static inline vec3_t v3_reflect(vec3_t v, vec3_t n)
 {
 	scalar_t dot = v3_dot(v, n);
-	return v3_neg(v3_sub(v3_scale(n, dot * 2.0), v));
+	return v3_sub(v3_scale(n, dot * 2.0), v);
 }
 
 static inline vec3_t v3_lerp(vec3_t v1, vec3_t v2, scalar_t t)
