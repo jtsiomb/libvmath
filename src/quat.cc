@@ -45,9 +45,9 @@ Quaternion Quaternion::operator -() const {
  * Q1*Q2 = [s1*s2 - v1.v2,  s1*v2 + s2*v1 + v1(x)v2]
  */
 Quaternion Quaternion::operator *(const Quaternion &quat) const {
-	Quaternion newq;	
+	Quaternion newq;
 	newq.s = s * quat.s - dot_product(v, quat.v);
-	newq.v = quat.v * s + v * quat.s + cross_product(v, quat.v);	
+	newq.v = quat.v * s + v * quat.s + cross_product(v, quat.v);
 	return newq;
 }
 
@@ -111,16 +111,16 @@ Quaternion Quaternion::inverse() const {
 
 
 void Quaternion::set_rotation(const Vector3 &axis, scalar_t angle) {
-	scalar_t HalfAngle = angle / 2.0;
-	s = cos(HalfAngle);
-	v = axis * sin(HalfAngle);
+	scalar_t half_angle = angle / 2.0;
+	s = cos(half_angle);
+	v = axis * sin(half_angle);
 }
 
 void Quaternion::rotate(const Vector3 &axis, scalar_t angle) {
 	Quaternion q;
-	scalar_t HalfAngle = angle / 2.0;
-	q.s = cos(HalfAngle);
-	q.v = axis * sin(HalfAngle);
+	scalar_t half_angle = angle / 2.0;
+	q.s = cos(half_angle);
+	q.v = axis * sin(half_angle);
 
 	*this *= q;
 }
