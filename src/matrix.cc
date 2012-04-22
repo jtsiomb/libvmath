@@ -24,6 +24,13 @@ Matrix3x3::Matrix3x3(	scalar_t m11, scalar_t m12, scalar_t m13,
 	m[2][0] = m31; m[2][1] = m32; m[2][2] = m33;
 }
 
+Matrix3x3::Matrix3x3(const Vector3 &ivec, const Vector3 &jvec, const Vector3 &kvec)
+{
+	set_row_vector(ivec, 0);
+	set_row_vector(jvec, 1);
+	set_row_vector(kvec, 2);
+}
+
 Matrix3x3::Matrix3x3(const mat3_t cmat)
 {
 	memcpy(m, cmat, sizeof(mat3_t));

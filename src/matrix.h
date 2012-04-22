@@ -86,6 +86,7 @@ public:
 	Matrix3x3(	scalar_t m11, scalar_t m12, scalar_t m13,
 				scalar_t m21, scalar_t m22, scalar_t m23,
 				scalar_t m31, scalar_t m32, scalar_t m33);
+	Matrix3x3(const Vector3 &ivec, const Vector3 &jvec, const Vector3 &kvec);
 	Matrix3x3(const mat3_t cmat);
 
 	Matrix3x3(const Matrix4x4 &mat4x4);

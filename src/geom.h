@@ -1,6 +1,6 @@
 /*
 libvmath - a vector math library
-Copyright (C) 2004-2011 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2004-2012 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
@@ -15,9 +15,8 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-#ifndef GEOM_H_
-#define GEOM_H_
+#ifndef LIBVMATH_GEOM_H_
+#define LIBVMATH_GEOM_H_
 
 #include "vector.h"
 #include "ray.h"
@@ -70,4 +69,4 @@ public:
 
 #endif
 
-#endif	/* GEOM_H_ */
+#endif	/* LIBVMATH_GEOM_H_ */
