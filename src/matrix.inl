@@ -113,7 +113,8 @@ static inline void m4_set_row(mat4_t m, vec4_t v, int idx)
 
 
 /* unrolled to hell and inline */
-inline Matrix4x4 operator *(const Matrix4x4 &m1, const Matrix4x4 &m2) {
+inline Matrix4x4 operator *(const Matrix4x4 &m1, const Matrix4x4 &m2)
+{
 	Matrix4x4 res;
 
 	res.m[0][0] = m1.m[0][0] * m2.m[0][0] + m1.m[0][1] * m2.m[1][0] + m1.m[0][2] * m2.m[2][0] + m1.m[0][3] * m2.m[3][0];
@@ -139,27 +140,33 @@ inline Matrix4x4 operator *(const Matrix4x4 &m1, const Matrix4x4 &m2) {
 	return res;
 }
 
-inline scalar_t *Matrix3x3::operator [](int index) {
+inline scalar_t *Matrix3x3::operator [](int index)
+{
 	return m[index];
 }
 
-inline const scalar_t *Matrix3x3::operator [](int index) const {
+inline const scalar_t *Matrix3x3::operator [](int index) const
+{
 	return m[index];
 }
 
-inline void Matrix3x3::reset_identity() {
-	memcpy(this->m, identity.m, 9 * sizeof(scalar_t));
+inline void Matrix3x3::reset_identity()
+{
+	*this = identity;
 }
 
-inline scalar_t *Matrix4x4::operator [](int index) {
+inline scalar_t *Matrix4x4::operator [](int index)
+{
 	return m[index];
 }
 
-inline const scalar_t *Matrix4x4::operator [](int index) const {
+inline const scalar_t *Matrix4x4::operator [](int index) const
+{
 	return m[index];
 }
 
-inline void Matrix4x4::reset_identity() {
-	memcpy(this->m, identity.m, 16 * sizeof(scalar_t));
+inline void Matrix4x4::reset_identity()
+{
+	*this = identity;
 }
 #endif	/* __cplusplus */
