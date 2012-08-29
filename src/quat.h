@@ -104,14 +104,13 @@ public:
 	void rotate(const Quaternion &q);
 
 	Matrix3x3 get_rotation_matrix() const;
-
-	friend Quaternion slerp(const Quaternion &q1, const Quaternion &q2, scalar_t t);
-
-	friend std::ostream &operator <<(std::ostream &out, const Quaternion &q);
 };
 
 Quaternion slerp(const Quaternion &q1, const Quaternion &q2, scalar_t t);
 inline Quaternion lerp(const Quaternion &q1, const Quaternion &q2, scalar_t t);
+
+std::ostream &operator <<(std::ostream &out, const Quaternion &q);
+
 #endif	/* __cplusplus */
 
 #include "quat.inl"
