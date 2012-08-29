@@ -137,6 +137,25 @@ public:
 	friend std::ostream &operator <<(std::ostream &out, const Matrix3x3 &mat);
 };
 
+/* binary operations matrix (op) matrix */
+Matrix3x3 operator +(const Matrix3x3 &m1, const Matrix3x3 &m2);
+Matrix3x3 operator -(const Matrix3x3 &m1, const Matrix3x3 &m2);
+Matrix3x3 operator *(const Matrix3x3 &m1, const Matrix3x3 &m2);
+
+void operator +=(Matrix3x3 &m1, const Matrix3x3 &m2);
+void operator -=(Matrix3x3 &m1, const Matrix3x3 &m2);
+void operator *=(Matrix3x3 &m1, const Matrix3x3 &m2);
+
+/* binary operations matrix (op) scalar and scalar (op) matrix */
+Matrix3x3 operator *(const Matrix3x3 &mat, scalar_t scalar);
+Matrix3x3 operator *(scalar_t scalar, const Matrix3x3 &mat);
+
+void operator *=(Matrix3x3 &mat, scalar_t scalar);
+
+std::ostream &operator <<(std::ostream &out, const Matrix3x3 &mat);
+
+
+
 /** 4x4 matrix */
 class Matrix4x4 {
 private:
@@ -199,6 +218,24 @@ public:
 
 	friend std::ostream &operator <<(std::ostream &out, const Matrix4x4 &mat);
 };
+
+/* binary operations matrix (op) matrix */
+Matrix4x4 operator +(const Matrix4x4 &m1, const Matrix4x4 &m2);
+Matrix4x4 operator -(const Matrix4x4 &m1, const Matrix4x4 &m2);
+Matrix4x4 operator *(const Matrix4x4 &m1, const Matrix4x4 &m2);
+
+void operator +=(Matrix4x4 &m1, const Matrix4x4 &m2);
+void operator -=(Matrix4x4 &m1, const Matrix4x4 &m2);
+inline void operator *=(Matrix4x4 &m1, const Matrix4x4 &m2);
+
+/* binary operations matrix (op) scalar and scalar (op) matrix */
+Matrix4x4 operator *(const Matrix4x4 &mat, scalar_t scalar);
+Matrix4x4 operator *(scalar_t scalar, const Matrix4x4 &mat);
+
+void operator *=(Matrix4x4 &mat, scalar_t scalar);
+
+std::ostream &operator <<(std::ostream &out, const Matrix4x4 &mat);
+
 #endif	/* __cplusplus */
 
 #include "matrix.inl"
