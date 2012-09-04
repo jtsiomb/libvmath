@@ -60,7 +60,8 @@ scalar_t bspline(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t)
 }
 
 /** Catmull-rom spline interpolation */
-scalar_t spline(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t) {
+scalar_t spline(scalar_t a, scalar_t b, scalar_t c, scalar_t d, scalar_t t)
+{
 	vec4_t tmp;
 	scalar_t tsq = t * t;
 
