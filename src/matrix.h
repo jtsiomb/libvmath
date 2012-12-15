@@ -75,10 +75,8 @@ void m4_print(FILE *fp, mat4_t m);
 
 /** 3x3 matrix */
 class Matrix3x3 {
-private:
-	scalar_t m[3][3];
-
 public:
+	scalar_t m[3][3];
 
 	static Matrix3x3 identity;
 
@@ -158,10 +156,8 @@ std::ostream &operator <<(std::ostream &out, const Matrix3x3 &mat);
 
 /** 4x4 matrix */
 class Matrix4x4 {
-private:
-	scalar_t m[4][4];
-
 public:
+	scalar_t m[4][4];
 
 	static Matrix4x4 identity;
 
