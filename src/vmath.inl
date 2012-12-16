@@ -18,6 +18,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdlib.h>
 
+static inline scalar_t smoothstep(float a, float b, float x)
+{
+	if(x < a) return 0.0;
+	if(x >= b) return 1.0;
+
+	x = (x - a) / (b - a);
+	return x * x * (3.0 - 2.0 * x);
+}
+
 /** Generates a random number in [0, range) */
 static inline scalar_t frand(scalar_t range)
 {
