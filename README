@@ -1,4 +1,4 @@
-vmath - 3.0
+vmath - 3.1
 -----------
 The math library has a double interface, and can be used by both C and C++
 programs.
