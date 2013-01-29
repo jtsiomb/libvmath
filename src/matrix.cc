@@ -536,7 +536,7 @@ void Matrix4x4::rotate(const Vector3 &axis, scalar_t angle)
 	scalar_t nysq = axis.y * axis.y;
 	scalar_t nzsq = axis.z * axis.z;
 
-	Matrix3x3 xform;
+	Matrix4x4 xform;
 	xform[0][0] = nxsq + (1-nxsq) * cosa;
 	xform[0][1] = axis.x * axis.y * invcosa - axis.z * sina;
 	xform[0][2] = axis.x * axis.z * invcosa + axis.y * sina;
@@ -547,7 +547,7 @@ void Matrix4x4::rotate(const Vector3 &axis, scalar_t angle)
 	xform[2][1] = axis.y * axis.z * invcosa + axis.x * sina;
 	xform[2][2] = nzsq + (1-nzsq) * cosa;
 
-	*this *= Matrix4x4(xform);
+	*this *= xform;
 }
 
 void Matrix4x4::set_rotation(const Vector3 &axis, scalar_t angle)
