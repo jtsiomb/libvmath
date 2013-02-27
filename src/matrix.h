@@ -118,6 +118,7 @@ public:
 	void set_rotation(scalar_t angle);
 	void set_rotation(const Vector3 &euler_angles);
 	void set_rotation(const Vector3 &axis, scalar_t angle);
+	Quaternion get_rotation_quat() const;
 
 	void scale(const Vector3 &scale_vec);
 	void set_scaling(const Vector3 &scale_vec);
@@ -192,14 +193,19 @@ public:
 
 	void translate(const Vector3 &trans);
 	void set_translation(const Vector3 &trans);
+	Vector3 get_translation() const;	// extract translation
 
 	void rotate(const Vector3 &euler_angles);			/* 3d rotation with euler angles */
 	void rotate(const Vector3 &axis, scalar_t angle);	/* 3d axis/angle rotation */
+	void rotate(const Quaternion &quat);
 	void set_rotation(const Vector3 &euler_angles);
 	void set_rotation(const Vector3 &axis, scalar_t angle);
+	void set_rotation(const Quaternion &quat);
+	Quaternion get_rotation_quat() const;		// extract rotation
 
 	void scale(const Vector4 &scale_vec);
 	void set_scaling(const Vector4 &scale_vec);
+	Vector3 get_scaling() const;		// extract scaling
 
 	void set_column_vector(const Vector4 &vec, unsigned int col_index);
 	void set_row_vector(const Vector4 &vec, unsigned int row_index);

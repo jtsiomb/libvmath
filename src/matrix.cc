@@ -256,6 +256,48 @@ void Matrix3x3::set_rotation(const Vector3 &axis, scalar_t angle)
 	m[2][2] = nzsq + (1-nzsq) * cosa;
 }
 
+// Algorithm in Ken Shoemake's article in 1987 SIGGRAPH course notes
+// article "Quaternion Calculus and Fast Animation".
+// adapted from: http://www.geometrictools.com/LibMathematics/Algebra/Wm5Quaternion.inl
+Quaternion Matrix3x3::get_rotation_quat() const
+{
+	static const int next[3] = {1, 2, 0};
+
+	float quat[4];
+
+	scalar_t trace = m[0][0] + m[1][1] + m[2][2];
+	scalar_t root;
+
+	if(trace > 0.0f) {
+		// |w| > 1/2
+		root = sqrt(trace + 1.0f);	// 2w
+		quat[0] = 0.5f * root;
+		root = 0.5f / root;	// 1 / 4w
+		quat[1] = (m[2][1] - m[1][2]) * root;
+		quat[2] = (m[0][2] - m[2][0]) * root;
+		quat[3] = (m[1][0] - m[0][1]) * root;
+	} else {
+		// |w| <= 1/2
+		int i = 0;
+		if(m[1][1] > m[0][0]) {
+			i = 1;
+		}
+		if(m[2][2] > m[i][i]) {
+			i = 2;
+		}
+		int j = next[i];
+		int k = next[j];
+
+		root = sqrt(m[i][i] - m[j][j] - m[k][k] + 1.0f);
+		quat[i + 1] = 0.5f * root;
+		root = 0.5f / root;
+		quat[0] = (m[k][j] - m[j][k]) * root;
+		quat[j + 1] = (m[j][i] - m[i][j]) * root;
+		quat[k + 1] = (m[k][i] - m[i][k]) * root;
+	}
+	return Quaternion(quat[0], quat[1], quat[2], quat[3]);
+}
+
 void Matrix3x3::scale(const Vector3 &scale_vec)
 {
 	Matrix3x3 smat(	scale_vec.x, 0, 0,
@@ -489,6 +531,11 @@ void Matrix4x4::set_translation(const Vector3 &trans)
 	*this = Matrix4x4(1, 0, 0, trans.x, 0, 1, 0, trans.y, 0, 0, 1, trans.z, 0, 0, 0, 1);
 }
 
+Vector3 Matrix4x4::get_translation() const
+{
+	return Vector3(m[0][3], m[1][3], m[2][3]);
+}
+
 void Matrix4x4::rotate(const Vector3 &euler_angles)
 {
 	Matrix3x3 xrot, yrot, zrot;
@@ -569,6 +616,22 @@ void Matrix4x4::set_rotation(const Vector3 &axis, scalar_t angle)
 	m[2][0] = axis.x * axis.z * invcosa - axis.y * sina;
 	m[2][1] = axis.y * axis.z * invcosa + axis.x * sina;
 	m[2][2] = nzsq + (1-nzsq) * cosa;
+}
+
+void Matrix4x4::rotate(const Quaternion &quat)
+{
+	*this *= quat.get_rotation_matrix();
+}
+
+void Matrix4x4::set_rotation(const Quaternion &quat)
+{
+	*this = quat.get_rotation_matrix();
+}
+
+Quaternion Matrix4x4::get_rotation_quat() const
+{
+	Matrix3x3 mat3 = *this;
+	return mat3.get_rotation_quat();
 }
 
 void Matrix4x4::scale(const Vector4 &scale_vec)
