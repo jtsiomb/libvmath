@@ -651,6 +651,11 @@ void Matrix4x4::set_scaling(const Vector4 &scale_vec)
 						0, 0, 0, scale_vec.w);
 }
 
+Vector3 Matrix4x4::get_scaling() const
+{
+	return Vector3(m[0][0], m[1][1], m[2][2]);
+}
+
 void Matrix4x4::set_column_vector(const Vector4 &vec, unsigned int col_index)
 {
 	m[0][col_index] = vec.x;
