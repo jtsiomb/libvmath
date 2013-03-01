@@ -48,10 +48,16 @@ quat_t quat_rotate_quat(quat_t q, quat_t rotq)
 quat_t quat_slerp(quat_t q1, quat_t q2, scalar_t t)
 {
 	quat_t res;
+	scalar_t a, b, c;
 	scalar_t angle = acos(q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z);
 
-	if(angle < SMALL_NUMBER) {
-		/* for very small angles use linear interpolation to avoid div/zero */
+	c = sin(angle);
+
+	if(fabs(c) < SMALL_NUMBER) {
+		/* for very small angles or completely opposite orientations
+		 * use linear interpolation to avoid div/zero (in the first case it makes sense,
+		 * the second case is pretty much undefined anyway I guess ...
+		 */
 		res.x = q1.x + (q2.x - q1.x) * t;
 		res.y = q1.y + (q2.y - q1.y) * t;
 		res.z = q1.z + (q2.z - q1.z) * t;
@@ -59,9 +65,8 @@ quat_t quat_slerp(quat_t q1, quat_t q2, scalar_t t)
 		return quat_normalize(res);
 	}
 
-	scalar_t a = sin((1.0f - t) * angle);
-	scalar_t b = sin(t * angle);
-	scalar_t c = sin(angle);
+	a = sin((1.0f - t) * angle);
+	b = sin(t * angle);
 
 	res.x = (q1.x * a + q2.x * b) / c;
 	res.y = (q1.y * a + q2.y * b) / c;

@@ -141,13 +141,17 @@ Matrix3x3 Quaternion::get_rotation_matrix() const {
 Quaternion slerp(const Quaternion &q1, const Quaternion &q2, scalar_t t) {
 	scalar_t angle = acos(q1.s * q2.s + q1.v.x * q2.v.x + q1.v.y * q2.v.y + q1.v.z * q2.v.z);
 
-	if(angle < SMALL_NUMBER) {
+	scalar_t c = sin(angle);
+	if(fabs(c) < SMALL_NUMBER) {
+		/* for very small angles or completely opposite orientations
+		 * use linear interpolation to avoid div/zero (in the first case it makes sense,
+		 * the second case is pretty much undefined anyway I guess ...
+		 */
 		return Quaternion(lerp(q1.s, q2.s, t), lerp(q1.v, q2.v, t)).normalized();
 	}
 
 	scalar_t a = sin((1.0f - t) * angle);
 	scalar_t b = sin(t * angle);
-	scalar_t c = sin(angle);
 
 	scalar_t x = (q1.v.x * a + q2.v.x * b) / c;
 	scalar_t y = (q1.v.y * a + q2.v.y * b) / c;
@@ -156,7 +160,6 @@ Quaternion slerp(const Quaternion &q1, const Quaternion &q2, scalar_t t) {
 
 	return Quaternion(s, Vector3(x, y, z)).normalized();
 }
-	
 
 
 std::ostream &operator <<(std::ostream &out, const Quaternion &q) {
