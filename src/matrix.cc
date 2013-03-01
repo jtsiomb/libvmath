@@ -653,7 +653,11 @@ void Matrix4x4::set_scaling(const Vector4 &scale_vec)
 
 Vector3 Matrix4x4::get_scaling() const
 {
-	return Vector3(m[0][0], m[1][1], m[2][2]);
+	Vector3 vi = get_row_vector(0);
+	Vector3 vj = get_row_vector(1);
+	Vector3 vk = get_row_vector(2);
+
+	return Vector3(vi.length(), vj.length(), vk.length());
 }
 
 void Matrix4x4::set_column_vector(const Vector4 &vec, unsigned int col_index)
