@@ -1,4 +1,5 @@
 #include "quat.h"
+#include "vmath.h"
 
 Quaternion::Quaternion() {
 	s = 1.0;
@@ -139,6 +140,11 @@ Matrix3x3 Quaternion::get_rotation_matrix() const {
 /** Spherical linear interpolation (slerp) */
 Quaternion slerp(const Quaternion &q1, const Quaternion &q2, scalar_t t) {
 	scalar_t angle = acos(q1.s * q2.s + q1.v.x * q2.v.x + q1.v.y * q2.v.y + q1.v.z * q2.v.z);
+
+	if(angle < SMALL_NUMBER) {
+		return Quaternion(lerp(q1.s, q2.s, t), lerp(q1.v, q2.v, t)).normalized();
+	}
+
 	scalar_t a = sin((1.0f - t) * angle);
 	scalar_t b = sin(t * angle);
 	scalar_t c = sin(angle);

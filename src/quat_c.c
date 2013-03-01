@@ -49,6 +49,16 @@ quat_t quat_slerp(quat_t q1, quat_t q2, scalar_t t)
 {
 	quat_t res;
 	scalar_t angle = acos(q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z);
+
+	if(angle < SMALL_NUMBER) {
+		/* for very small angles use linear interpolation to avoid div/zero */
+		res.x = q1.x + (q2.x - q1.x) * t;
+		res.y = q1.y + (q2.y - q1.y) * t;
+		res.z = q1.z + (q2.z - q1.z) * t;
+		res.w = q1.w + (q2.w - q1.w) * t;
+		return quat_normalize(res);
+	}
+
 	scalar_t a = sin((1.0f - t) * angle);
 	scalar_t b = sin(t * angle);
 	scalar_t c = sin(angle);
