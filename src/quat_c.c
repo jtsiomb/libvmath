@@ -48,29 +48,27 @@ quat_t quat_rotate_quat(quat_t q, quat_t rotq)
 quat_t quat_slerp(quat_t q1, quat_t q2, scalar_t t)
 {
 	quat_t res;
-	scalar_t a, b, c;
-	scalar_t angle = acos(q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z);
+	scalar_t a, b, sin_angle;
+	scalar_t dot = q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z;
+	scalar_t angle = acos(dot);
 
-	c = sin(angle);
+	sin_angle = sin(angle);
 
-	if(fabs(c) < SMALL_NUMBER) {
+	if(fabs(sin_angle) < SMALL_NUMBER) {
 		/* for very small angles or completely opposite orientations
 		 * use linear interpolation to avoid div/zero (in the first case it makes sense,
 		 * the second case is pretty much undefined anyway I guess ...
 		 */
-		res.x = q1.x + (q2.x - q1.x) * t;
-		res.y = q1.y + (q2.y - q1.y) * t;
-		res.z = q1.z + (q2.z - q1.z) * t;
-		res.w = q1.w + (q2.w - q1.w) * t;
-		return quat_normalize(res);
+		a = 1.0f - t;
+		b = t;
+	} else {
+		a = sin((1.0f - t) * angle) / sin_angle;
+		b = sin(t * angle) / sin_angle;
 	}
 
-	a = sin((1.0f - t) * angle);
-	b = sin(t * angle);
-
-	res.x = (q1.x * a + q2.x * b) / c;
-	res.y = (q1.y * a + q2.y * b) / c;
-	res.z = (q1.z * a + q2.z * b) / c;
-	res.w = (q1.w * a + q2.w * b) / c;
-	return quat_normalize(res);
+	res.x = q1.x * a + q2.x * b;
+	res.y = q1.y * a + q2.y * b;
+	res.z = q1.z * a + q2.z * b;
+	res.w = q1.w * a + q2.w * b;
+	return res;
 }
