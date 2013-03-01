@@ -48,10 +48,19 @@ quat_t quat_rotate_quat(quat_t q, quat_t rotq)
 quat_t quat_slerp(quat_t q1, quat_t q2, scalar_t t)
 {
 	quat_t res;
-	scalar_t a, b, sin_angle;
-	scalar_t dot = q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z;
-	scalar_t angle = acos(dot);
+	scalar_t a, b, angle, sin_angle, dot;
 
+	dot = q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z;
+	if(dot < 0.0) {
+		/* make sure we interpolate across the shortest arc */
+		q1.x = -q1.x;
+		q1.y = -q1.y;
+		q1.z = -q1.z;
+		q1.w = -q1.w;
+		dot = -dot;
+	}
+
+	angle = acos(dot);
 	sin_angle = sin(angle);
 
 	if(fabs(sin_angle) < SMALL_NUMBER) {
