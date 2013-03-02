@@ -30,15 +30,18 @@ Quaternion::Quaternion(const quat_t &quat)
 	s = quat.w;
 }
 
-Quaternion Quaternion::operator +(const Quaternion &quat) const {
+Quaternion Quaternion::operator +(const Quaternion &quat) const
+{
 	return Quaternion(s + quat.s, v + quat.v);
 }
 
-Quaternion Quaternion::operator -(const Quaternion &quat) const {
+Quaternion Quaternion::operator -(const Quaternion &quat) const
+{
 	return Quaternion(s - quat.s, v - quat.v);
 }
 
-Quaternion Quaternion::operator -() const {
+Quaternion Quaternion::operator -() const
+{
 	return Quaternion(-s, -v);
 }
 
@@ -138,14 +141,16 @@ Matrix3x3 Quaternion::get_rotation_matrix() const {
 
 
 /** Spherical linear interpolation (slerp) */
-Quaternion slerp(const Quaternion &q1, const Quaternion &q2, scalar_t t) {
+Quaternion slerp(const Quaternion &quat1, const Quaternion &q2, scalar_t t) {
+	Quaternion q1;
 	scalar_t dot = q1.s * q2.s + q1.v.x * q2.v.x + q1.v.y * q2.v.y + q1.v.z * q2.v.z;
 
 	if(dot < 0.0) {
 		/* make sure we interpolate across the shortest arc */
-		q1.v = -q1.v;
-		q1.s = -q1.s;
+		q1 = -quat1;
 		dot = -dot;
+	} else {
+		q1 = quat1;
 	}
 
 	scalar_t angle = acos(dot);
