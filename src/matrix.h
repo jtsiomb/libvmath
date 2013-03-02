@@ -224,7 +224,7 @@ public:
 /* binary operations matrix (op) matrix */
 Matrix4x4 operator +(const Matrix4x4 &m1, const Matrix4x4 &m2);
 Matrix4x4 operator -(const Matrix4x4 &m1, const Matrix4x4 &m2);
-Matrix4x4 operator *(const Matrix4x4 &m1, const Matrix4x4 &m2);
+inline Matrix4x4 operator *(const Matrix4x4 &m1, const Matrix4x4 &m2);
 
 void operator +=(Matrix4x4 &m1, const Matrix4x4 &m2);
 void operator -=(Matrix4x4 &m1, const Matrix4x4 &m2);

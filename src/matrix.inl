@@ -161,6 +161,13 @@ inline Matrix4x4 operator *(const Matrix4x4 &m1, const Matrix4x4 &m2)
 	return res;
 }
 
+inline void operator *=(Matrix4x4 &m1, const Matrix4x4 &m2)
+{
+	Matrix4x4 res = m1 * m2;
+	m1 = res;
+}
+
+
 inline scalar_t *Matrix3x3::operator [](int index)
 {
 	return m[index];
