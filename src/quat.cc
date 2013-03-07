@@ -134,9 +134,10 @@ void Quaternion::rotate(const Quaternion &q) {
 }
 
 Matrix3x3 Quaternion::get_rotation_matrix() const {
-	return Matrix3x3(	1.0 - 2.0 * v.y*v.y - 2.0 * v.z*v.z,	2.0 * v.x * v.y + 2.0 * s * v.z,		2.0 * v.z * v.x - 2.0 * s * v.y,
-						2.0 * v.x * v.y - 2.0 * s * v.z,		1.0 - 2.0 * v.x*v.x - 2.0 * v.z*v.z,	2.0 * v.y * v.z + 2.0 * s * v.x,
-						2.0 * v.z * v.x + 2.0 * s * v.y,		2.0 * v.y * v.z - 2.0 * s * v.x,		1.0 - 2.0 * v.x*v.x - 2.0 * v.y*v.y);
+	return Matrix3x3(
+			1.0 - 2.0 * v.y*v.y - 2.0 * v.z*v.z,	2.0 * v.x * v.y - 2.0 * s * v.z,		2.0 * v.z * v.x + 2.0 * s * v.y,
+			2.0 * v.x * v.y + 2.0 * s * v.z,		1.0 - 2.0 * v.x*v.x - 2.0 * v.z*v.z,	2.0 * v.y * v.z - 2.0 * s * v.x,
+			2.0 * v.z * v.x - 2.0 * s * v.y,		2.0 * v.y * v.z + 2.0 * s * v.x,		1.0 - 2.0 * v.x*v.x - 2.0 * v.y*v.y);
 }
 
 
