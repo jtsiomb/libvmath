@@ -54,13 +54,18 @@ void m4_to_m3(mat3_t dest, mat4_t src)
 	}
 }
 
+void m4_set_translation(mat4_t m, scalar_t x, scalar_t y, scalar_t z)
+{
+	m4_identity(m);
+	m[0][3] = x;
+	m[1][3] = y;
+	m[2][3] = z;
+}
+
 void m4_translate(mat4_t m, scalar_t x, scalar_t y, scalar_t z)
 {
 	mat4_t tm;
-	m4_identity(tm);
-	tm[0][3] = x;
-	tm[1][3] = y;
-	tm[2][3] = z;
+	m4_set_translation(tm, x, y, z);
 	m4_mult(m, m, tm);
 }
 
@@ -71,36 +76,50 @@ void m4_rotate(mat4_t m, scalar_t x, scalar_t y, scalar_t z)
 	m4_rotate_z(m, z);
 }
 
+void m4_set_rotation_x(mat4_t m, scalar_t angle)
+{
+	m4_identity(m);
+	m[1][1] = cos(angle); m[1][2] = -sin(angle);
+	m[2][1] = sin(angle); m[2][2] = cos(angle);
+}
+
 void m4_rotate_x(mat4_t m, scalar_t angle)
 {
 	mat4_t rm;
-	m4_identity(rm);
-	rm[1][1] = cos(angle); rm[1][2] = -sin(angle);
-	rm[2][1] = sin(angle); rm[2][2] = cos(angle);
+	m4_set_rotation_x(m, angle);
 	m4_mult(m, m, rm);
+}
+
+void m4_set_rotation_y(mat4_t m, scalar_t angle)
+{
+	m4_identity(m);
+	m[0][0] = cos(angle); m[0][2] = sin(angle);
+	m[2][0] = -sin(angle); m[2][2] = cos(angle);
 }
 
 void m4_rotate_y(mat4_t m, scalar_t angle)
 {
 	mat4_t rm;
-	m4_identity(rm);
-	rm[0][0] = cos(angle); rm[0][2] = sin(angle);
-	rm[2][0] = -sin(angle); rm[2][2] = cos(angle);
+	m4_set_rotation_y(rm, angle);
 	m4_mult(m, m, rm);
+}
+
+void m4_set_rotation_z(mat4_t m, scalar_t angle)
+{
+	m4_identity(m);
+	m[0][0] = cos(angle); m[0][1] = -sin(angle);
+	m[1][0] = sin(angle); m[1][1] = cos(angle);
 }
 
 void m4_rotate_z(mat4_t m, scalar_t angle)
 {
 	mat4_t rm;
-	m4_identity(rm);
-	rm[0][0] = cos(angle); rm[0][1] = -sin(angle);
-	rm[1][0] = sin(angle); rm[1][1] = cos(angle);
+	m4_set_rotation_z(rm, angle);
 	m4_mult(m, m, rm);
 }
 
-void m4_rotate_axis(mat4_t m, scalar_t angle, scalar_t x, scalar_t y, scalar_t z)
+void m4_set_rotation_axis(mat4_t m, scalar_t angle, scalar_t x, scalar_t y, scalar_t z)
 {
-	mat4_t xform;
 	scalar_t sina = sin(angle);
 	scalar_t cosa = cos(angle);
 	scalar_t one_minus_cosa = 1.0 - cosa;
@@ -108,17 +127,25 @@ void m4_rotate_axis(mat4_t m, scalar_t angle, scalar_t x, scalar_t y, scalar_t z
 	scalar_t nysq = y * y;
 	scalar_t nzsq = z * z;
 
-	m4_identity(xform);
-	xform[0][0] = nxsq + (1.0 - nxsq) * cosa;
-	xform[0][1] = x * y * one_minus_cosa - z * sina;
-	xform[0][2] = x * z * one_minus_cosa + y * sina;
-	xform[1][0] = x * y * one_minus_cosa + z * sina;
-	xform[1][1] = nysq + (1.0 - nysq) * cosa;
-	xform[1][2] = y * z * one_minus_cosa - x * sina;
-	xform[2][0] = x * z * one_minus_cosa - y * sina;
-	xform[2][1] = y * z * one_minus_cosa + x * sina;
-	xform[2][2] = nzsq + (1.0 - nzsq) * cosa;
+	m[0][0] = nxsq + (1.0 - nxsq) * cosa;
+	m[0][1] = x * y * one_minus_cosa - z * sina;
+	m[0][2] = x * z * one_minus_cosa + y * sina;
+	m[1][0] = x * y * one_minus_cosa + z * sina;
+	m[1][1] = nysq + (1.0 - nysq) * cosa;
+	m[1][2] = y * z * one_minus_cosa - x * sina;
+	m[2][0] = x * z * one_minus_cosa - y * sina;
+	m[2][1] = y * z * one_minus_cosa + x * sina;
+	m[2][2] = nzsq + (1.0 - nzsq) * cosa;
 
+	/* the rest are identity */
+	m[3][0] = m[3][1] = m[3][2] = m[0][3] = m[1][3] = m[2][3] = 0.0;
+	m[3][3] = 1.0;
+}
+
+void m4_rotate_axis(mat4_t m, scalar_t angle, scalar_t x, scalar_t y, scalar_t z)
+{
+	mat4_t xform;
+	m4_set_rotation_axis(xform, angle, x, y, z);
 	m4_mult(m, m, xform);
 }
 

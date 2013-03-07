@@ -49,14 +49,26 @@ void m4_to_m3(mat3_t dest, mat4_t src);
 
 static inline void m4_mult(mat4_t res, mat4_t m1, mat4_t m2);
 
+void m4_set_translation(mat4_t m, scalar_t x, scalar_t y, scalar_t z);
 void m4_translate(mat4_t m, scalar_t x, scalar_t y, scalar_t z);
+
 void m4_rotate(mat4_t m, scalar_t x, scalar_t y, scalar_t z);
+
+void m4_set_rotation_x(mat4_t m, scalar_t angle);
 void m4_rotate_x(mat4_t m, scalar_t angle);
+void m4_set_rotation_y(mat4_t m, scalar_t angle);
 void m4_rotate_y(mat4_t m, scalar_t angle);
+void m4_set_rotation_z(mat4_t m, scalar_t angle);
 void m4_rotate_z(mat4_t m, scalar_t angle);
+/* axis-angle rotation */
+void m4_set_rotation_axis(mat4_t m, scalar_t angle, scalar_t x, scalar_t y, scalar_t z);
 void m4_rotate_axis(mat4_t m, scalar_t angle, scalar_t x, scalar_t y, scalar_t z);
+/* concatentate a rotation quaternion */
 void m4_rotate_quat(mat4_t m, quat_t q);
+
+void m4_set_scaling(mat4_t m, scalar_t x, scalar_t y, scalar_t z);
 void m4_scale(mat4_t m, scalar_t x, scalar_t y, scalar_t z);
+
 static inline void m4_set_column(mat4_t m, vec4_t v, int idx);
 static inline void m4_set_row(mat4_t m, vec4_t v, int idx);
 
