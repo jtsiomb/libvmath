@@ -154,6 +154,12 @@ Quaternion slerp(const Quaternion &quat1, const Quaternion &q2, scalar_t t) {
 		q1 = quat1;
 	}
 
+	/* clamp dot to [-1, 1] in order to avoid domain errors in acos due to
+	 * floating point imprecisions
+	 */
+	if(dot < -1.0) dot = -1.0;
+	if(dot > 1.0) dot = 1.0;
+
 	scalar_t angle = acos(dot);
 	scalar_t a, b;
 

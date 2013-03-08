@@ -60,6 +60,12 @@ quat_t quat_slerp(quat_t q1, quat_t q2, scalar_t t)
 		dot = -dot;
 	}
 
+	/* clamp dot to [-1, 1] in order to avoid domain errors in acos due to
+	 * floating point imprecisions
+	 */
+	if(dot < -1.0) dot = -1.0;
+	if(dot > 1.0) dot = 1.0;
+
 	angle = acos(dot);
 	sin_angle = sin(angle);
 
