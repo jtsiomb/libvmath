@@ -39,13 +39,9 @@ ray_t ray_transform(ray_t r, mat4_t m);
 #include <stack>
 
 class Ray {
-private:
-	std::stack<scalar_t> ior_stack;
-
 public:
-	/* enviornmental index of refraction, normally 1.0 */
 	static scalar_t env_ior;
-	
+
 	Vector3 origin, dir;
 	scalar_t energy;
 	int iter;
@@ -57,15 +53,10 @@ public:
 
 	void transform(const Matrix4x4 &xform);
 	Ray transformed(const Matrix4x4 &xform) const;
-
-	void enter(scalar_t new_ior);
-	void leave();
-
-	scalar_t calc_ior(bool entering, scalar_t mat_ior = 1.0) const;
 };
 
 inline Ray reflect_ray(const Ray &inray, const Vector3 &norm);
-inline Ray refract_ray(const Ray &inray, const Vector3 &norm, scalar_t ior, bool entering, scalar_t ray_mag = -1.0);
+inline Ray refract_ray(const Ray &inray, const Vector3 &norm, scalar_t from_ior, scalar_t to_ior);
 #endif	/* __cplusplus */
 
 #include "ray.inl"

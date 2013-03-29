@@ -34,36 +34,18 @@ static inline ray_t ray_cons(vec3_t origin, vec3_t dir)
 inline Ray reflect_ray(const Ray &inray, const Vector3 &norm)
 {
 	Ray ray = inray;
-	ray.iter--;
 	ray.dir = ray.dir.reflection(norm);
 	return ray;
 }
 
-inline Ray refract_ray(const Ray &inray, const Vector3 &norm, scalar_t mat_ior, bool entering, scalar_t ray_mag)
+inline Ray refract_ray(const Ray &inray, const Vector3 &norm, scalar_t from_ior, scalar_t to_ior)
 {
 	Ray ray = inray;
-	ray.iter--;
-
-	scalar_t ior = ray.calc_ior(entering, mat_ior);
-	
-	if(entering) {
-		ray.enter(mat_ior);
-	} else {
-		ray.leave();
-	}
-
-	if(ray_mag < 0.0) {
-		ray_mag = ray.dir.length();
-	}
-	ray.dir = (ray.dir / ray_mag).refraction(norm, ior) * ray_mag;
+	ray.dir = ray.dir.refraction(norm, from_ior, to_ior);
 
 	/* check TIR */
 	if(dot_product(ray.dir, norm) > 0.0) {
-		if(entering) {
-			ray.leave();
-		} else {
-			ray.enter(mat_ior);
-		}
+		return reflect_ray(inray, norm);
 	}
 	return ray;
 }

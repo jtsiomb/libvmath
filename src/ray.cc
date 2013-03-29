@@ -37,32 +37,3 @@ Ray Ray::transformed(const Matrix4x4 &xform) const
 	foo.transform(xform);
 	return foo;
 }
-
-void Ray::enter(scalar_t new_ior)
-{
-	ior = new_ior;
-	ior_stack.push(ior);
-}
-
-void Ray::leave()
-{
-	if(ior_stack.empty()) {
-		//std::cerr << "empty ior stack?\n";
-		return;
-	}
-	ior_stack.pop();
-	ior = ior_stack.empty() ? env_ior : ior_stack.top();
-}
-
-scalar_t Ray::calc_ior(bool entering, scalar_t mat_ior) const
-{
-	scalar_t from_ior = this->ior;
-
-	if(entering) {
-		return from_ior / mat_ior;
-	}
-
-	Ray tmp = *this;
-	tmp.leave();
-	return from_ior / tmp.ior;
-}
