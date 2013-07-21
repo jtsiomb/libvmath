@@ -12,7 +12,7 @@ Matrix3x3 Matrix3x3::identity = Matrix3x3(1, 0, 0, 0, 1, 0, 0, 0, 1);
 
 Matrix3x3::Matrix3x3()
 {
-	*this = identity;
+	*this = Matrix3x3(1, 0, 0, 0, 1, 0, 0, 0, 1);
 }
 
 Matrix3x3::Matrix3x3(	scalar_t m11, scalar_t m12, scalar_t m13,
@@ -389,7 +389,7 @@ Matrix4x4 Matrix4x4::identity = Matrix4x4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0,
 
 Matrix4x4::Matrix4x4()
 {
-	*this = identity;
+	*this = Matrix4x4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 Matrix4x4::Matrix4x4(	scalar_t m11, scalar_t m12, scalar_t m13, scalar_t m14,
@@ -633,6 +633,37 @@ Vector3 Matrix4x4::get_scaling() const
 	Vector3 vk = get_row_vector(2);
 
 	return Vector3(vi.length(), vj.length(), vk.length());
+}
+
+void Matrix4x4::set_perspective(float vfov, float aspect, float znear, float zfar)
+{
+	float f = 1.0f / tan(vfov * 0.5f);
+    float dz = znear - zfar;
+
+	reset_identity();
+
+	m[0][0] = f / aspect;
+    m[1][1] = f;
+    m[2][2] = (zfar + znear) / dz;
+    m[3][2] = -1.0f;
+    m[2][3] = 2.0f * zfar * znear / dz;
+    m[3][3] = 0.0f;
+}
+
+void Matrix4x4::set_orthographic(float left, float right, float bottom, float top, float znear, float zfar)
+{
+	float dx = right - left;
+	float dy = top - bottom;
+	float dz = zfar - znear;
+
+	reset_identity();
+
+	m[0][0] = 2.0 / dx;
+	m[1][1] = 2.0 / dy;
+	m[2][2] = -2.0 / dz;
+	m[0][3] = -(right + left) / dx;
+	m[1][3] = -(top + bottom) / dy;
+	m[2][3] = -(zfar + znear) / dz;
 }
 
 void Matrix4x4::set_column_vector(const Vector4 &vec, unsigned int col_index)
