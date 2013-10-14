@@ -332,111 +332,136 @@ static inline vec4_t v4_transform(vec4_t v, mat4_t m)
 
 /* --------------- C++ part -------------- */
 
-inline scalar_t &Vector2::operator [](int elem) {
+inline scalar_t &Vector2::operator [](int elem)
+{
 	return elem ? y : x;
 }
 
-inline const scalar_t &Vector2::operator [](int elem) const {
+inline const scalar_t &Vector2::operator [](int elem) const
+{
 	return elem ? y : x;
 }
 
-inline Vector2 operator -(const Vector2 &vec) {
+inline Vector2 operator -(const Vector2 &vec)
+{
 	return Vector2(-vec.x, -vec.y);
 }
 
-inline scalar_t dot_product(const Vector2 &v1, const Vector2 &v2) {
+inline scalar_t dot_product(const Vector2 &v1, const Vector2 &v2)
+{
 	return v1.x * v2.x + v1.y * v2.y;
 }
 
-inline Vector2 operator +(const Vector2 &v1, const Vector2 &v2) {
+inline Vector2 operator +(const Vector2 &v1, const Vector2 &v2)
+{
 	return Vector2(v1.x + v2.x, v1.y + v2.y);
 }
 
-inline Vector2 operator -(const Vector2 &v1, const Vector2 &v2) {
+inline Vector2 operator -(const Vector2 &v1, const Vector2 &v2)
+{
 	return Vector2(v1.x - v2.x, v1.y - v2.y);
 }
 
-inline Vector2 operator *(const Vector2 &v1, const Vector2 &v2) {
+inline Vector2 operator *(const Vector2 &v1, const Vector2 &v2)
+{
 	return Vector2(v1.x * v2.x, v1.y * v2.y);
 }
 
-inline Vector2 operator /(const Vector2 &v1, const Vector2 &v2) {
+inline Vector2 operator /(const Vector2 &v1, const Vector2 &v2)
+{
 	return Vector2(v1.x / v2.x, v1.y / v2.y);
 }
 
-inline bool operator ==(const Vector2 &v1, const Vector2 &v2) {
+inline bool operator ==(const Vector2 &v1, const Vector2 &v2)
+{
 	return (fabs(v1.x - v2.x) < XSMALL_NUMBER) && (fabs(v1.y - v2.x) < XSMALL_NUMBER);
 }
 
-inline void operator +=(Vector2 &v1, const Vector2 &v2) {
+inline void operator +=(Vector2 &v1, const Vector2 &v2)
+{
 	v1.x += v2.x;
 	v1.y += v2.y;
 }
 
-inline void operator -=(Vector2 &v1, const Vector2 &v2) {
+inline void operator -=(Vector2 &v1, const Vector2 &v2)
+{
 	v1.x -= v2.x;
 	v1.y -= v2.y;
 }
 
-inline void operator *=(Vector2 &v1, const Vector2 &v2) {
+inline void operator *=(Vector2 &v1, const Vector2 &v2)
+{
 	v1.x *= v2.x;
 	v1.y *= v2.y;
 }
 
-inline void operator /=(Vector2 &v1, const Vector2 &v2) {
+inline void operator /=(Vector2 &v1, const Vector2 &v2)
+{
 	v1.x /= v2.x;
 	v1.y /= v2.y;
 }
 
-inline Vector2 operator +(const Vector2 &vec, scalar_t scalar) {
+inline Vector2 operator +(const Vector2 &vec, scalar_t scalar)
+{
 	return Vector2(vec.x + scalar, vec.y + scalar);
 }
 
-inline Vector2 operator +(scalar_t scalar, const Vector2 &vec) {
+inline Vector2 operator +(scalar_t scalar, const Vector2 &vec)
+{
 	return Vector2(vec.x + scalar, vec.y + scalar);
 }
 
-inline Vector2 operator -(scalar_t scalar, const Vector2 &vec) {
+inline Vector2 operator -(const Vector2 &vec, scalar_t scalar)
+{
 	return Vector2(vec.x - scalar, vec.y - scalar);
 }
 
-inline Vector2 operator *(const Vector2 &vec, scalar_t scalar) {
+inline Vector2 operator *(const Vector2 &vec, scalar_t scalar)
+{
 	return Vector2(vec.x * scalar, vec.y * scalar);
 }
 
-inline Vector2 operator *(scalar_t scalar, const Vector2 &vec) {
+inline Vector2 operator *(scalar_t scalar, const Vector2 &vec)
+{
 	return Vector2(vec.x * scalar, vec.y * scalar);
 }
 
-inline Vector2 operator /(const Vector2 &vec, scalar_t scalar) {
+inline Vector2 operator /(const Vector2 &vec, scalar_t scalar)
+{
 	return Vector2(vec.x / scalar, vec.y / scalar);
 }
 
-inline void operator +=(Vector2 &vec, scalar_t scalar) {
+inline void operator +=(Vector2 &vec, scalar_t scalar)
+{
 	vec.x += scalar;
 	vec.y += scalar;
 }
 
-inline void operator -=(Vector2 &vec, scalar_t scalar) {
+inline void operator -=(Vector2 &vec, scalar_t scalar)
+{
 	vec.x -= scalar;
 	vec.y -= scalar;
 }
 
-inline void operator *=(Vector2 &vec, scalar_t scalar) {
+inline void operator *=(Vector2 &vec, scalar_t scalar)
+{
 	vec.x *= scalar;
 	vec.y *= scalar;
 }
 
-inline void operator /=(Vector2 &vec, scalar_t scalar) {
+inline void operator /=(Vector2 &vec, scalar_t scalar)
+{
 	vec.x /= scalar;
 	vec.y /= scalar;
 }
 
-inline scalar_t Vector2::length() const {
+inline scalar_t Vector2::length() const
+{
 	return sqrt(x*x + y*y);
 }
 
-inline scalar_t Vector2::length_sq() const {
+inline scalar_t Vector2::length_sq() const
+{
 	return x*x + y*y;
 }
 
