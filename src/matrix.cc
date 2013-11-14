@@ -635,6 +635,23 @@ Vector3 Matrix4x4::get_scaling() const
 	return Vector3(vi.length(), vj.length(), vk.length());
 }
 
+void Matrix4x4::set_frustum(float left, float right, float bottom, float top, float znear, float zfar)
+{
+	float dx = right - left;
+	float dy = top - bottom;
+	float dz = zfar - znear;
+
+	float a = (right + left) / dx;
+	float b = (top + bottom) / dy;
+	float c = -(zfar + znear) / dz;
+	float d = -2.0 * zfar * znear / dz;
+
+	*this = Matrix4x4(2.0 * znear / dx, 0, a, 0,
+			0, 2.0 * znear / dy, b, 0,
+			0, 0, c, d,
+			0, 0, -1, 0);
+}
+
 void Matrix4x4::set_perspective(float vfov, float aspect, float znear, float zfar)
 {
 	float f = 1.0f / tan(vfov * 0.5f);
@@ -664,6 +681,21 @@ void Matrix4x4::set_orthographic(float left, float right, float bottom, float to
 	m[0][3] = -(right + left) / dx;
 	m[1][3] = -(top + bottom) / dy;
 	m[2][3] = -(zfar + znear) / dz;
+}
+
+void Matrix4x4::set_lookat(const Vector3 &pos, const Vector3 &targ, const Vector3 &up)
+{
+	Vector3 vk = (targ - pos).normalized();
+	Vector3 vj = up.normalized();
+	Vector3 vi = cross_product(vk, vj).normalized();
+	vj = cross_product(vi, vk);
+
+	*this = Matrix4x4(
+			vi.x, vi.y, vi.z, 0,
+			vj.x, vj.y, vj.z, 0,
+			-vk.x, -vk.y, -vk.z, 0,
+			0, 0, 0, 1);
+	translate(-pos);
 }
 
 void Matrix4x4::set_column_vector(const Vector4 &vec, unsigned int col_index)

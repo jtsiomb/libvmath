@@ -1,7 +1,7 @@
 #ifndef VMATH_CONFIG_H_
 #define VMATH_CONFIG_H_
 
-#if (__STDC_VERSION__ < 199999)
+#if (__STDC_VERSION__ < 199999) && !defined(__cplusplus)
 #if defined(__GNUC__) || defined(_MSC_VER)
 #define inline __inline
 #else

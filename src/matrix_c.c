@@ -86,7 +86,7 @@ void m4_set_rotation_x(mat4_t m, scalar_t angle)
 void m4_rotate_x(mat4_t m, scalar_t angle)
 {
 	mat4_t rm;
-	m4_set_rotation_x(m, angle);
+	m4_set_rotation_x(rm, angle);
 	m4_mult(m, m, rm);
 }
 

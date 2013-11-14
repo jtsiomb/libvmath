@@ -1,6 +1,6 @@
 /*
 libvmath - a vector math library
-Copyright (C) 2004-2011 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2004-2013 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
@@ -21,6 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef __cplusplus
 extern "C" {
 #endif	/* __cplusplus */
+
+scalar_t spline(scalar_t, scalar_t, scalar_t, scalar_t, scalar_t);
+scalar_t bspline(scalar_t, scalar_t, scalar_t, scalar_t, scalar_t);
 
 /* C 2D vector functions */
 static inline vec2_t v2_cons(scalar_t x, scalar_t y)
@@ -473,9 +476,16 @@ inline Vector2 lerp(const Vector2 &a, const Vector2 &b, scalar_t t)
 inline Vector2 catmull_rom_spline(const Vector2 &v0, const Vector2 &v1,
 		const Vector2 &v2, const Vector2 &v3, scalar_t t)
 {
-	scalar_t spline(scalar_t, scalar_t, scalar_t, scalar_t, scalar_t);
 	scalar_t x = spline(v0.x, v1.x, v2.x, v3.x, t);
 	scalar_t y = spline(v0.y, v1.y, v2.y, v3.y, t);
+	return Vector2(x, y);
+}
+
+inline Vector2 bspline(const Vector2 &v0, const Vector2 &v1,
+		const Vector2 &v2, const Vector2 &v3, scalar_t t)
+{
+	scalar_t x = bspline(v0.x, v1.x, v2.x, v3.x, t);
+	scalar_t y = bspline(v0.y, v1.y, v2.y, v3.y, t);
 	return Vector2(x, y);
 }
 
@@ -611,10 +621,18 @@ inline Vector3 lerp(const Vector3 &a, const Vector3 &b, scalar_t t) {
 inline Vector3 catmull_rom_spline(const Vector3 &v0, const Vector3 &v1,
 		const Vector3 &v2, const Vector3 &v3, scalar_t t)
 {
-	scalar_t spline(scalar_t, scalar_t, scalar_t, scalar_t, scalar_t);
 	scalar_t x = spline(v0.x, v1.x, v2.x, v3.x, t);
 	scalar_t y = spline(v0.y, v1.y, v2.y, v3.y, t);
 	scalar_t z = spline(v0.z, v1.z, v2.z, v3.z, t);
+	return Vector3(x, y, z);
+}
+
+inline Vector3 bspline(const Vector3 &v0, const Vector3 &v1,
+		const Vector3 &v2, const Vector3 &v3, scalar_t t)
+{
+	scalar_t x = bspline(v0.x, v1.x, v2.x, v3.x, t);
+	scalar_t y = bspline(v0.y, v1.y, v2.y, v3.y, t);
+	scalar_t z = bspline(v0.z, v1.z, v2.z, v3.z, t);
 	return Vector3(x, y, z);
 }
 
@@ -775,7 +793,6 @@ inline Vector4 lerp(const Vector4 &v0, const Vector4 &v1, scalar_t t)
 inline Vector4 catmull_rom_spline(const Vector4 &v0, const Vector4 &v1,
 		const Vector4 &v2, const Vector4 &v3, scalar_t t)
 {
-	scalar_t spline(scalar_t, scalar_t, scalar_t, scalar_t, scalar_t);
 	scalar_t x = spline(v0.x, v1.x, v2.x, v3.x, t);
 	scalar_t y = spline(v0.y, v1.y, v2.y, v3.y, t);
 	scalar_t z = spline(v0.z, v1.z, v2.z, v3.z, t);
@@ -783,4 +800,13 @@ inline Vector4 catmull_rom_spline(const Vector4 &v0, const Vector4 &v1,
 	return Vector4(x, y, z, w);
 }
 
+inline Vector4 bspline(const Vector4 &v0, const Vector4 &v1,
+		const Vector4 &v2, const Vector4 &v3, scalar_t t)
+{
+	scalar_t x = bspline(v0.x, v1.x, v2.x, v3.x, t);
+	scalar_t y = bspline(v0.y, v1.y, v2.y, v3.y, t);
+	scalar_t z = bspline(v0.z, v1.z, v2.z, v3.z, t);
+	scalar_t w = bspline(v0.w, v1.w, v2.w, v3.w, t);
+	return Vector4(x, y, z, w);
+}
 #endif	/* __cplusplus */

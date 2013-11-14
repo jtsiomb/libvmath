@@ -15,10 +15,60 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 #include <stdlib.h>
 #include <math.h>
 #include "vmath.h"
+
+#if defined(__APPLE__) && !defined(TARGET_IPHONE)
+#include <xmmintrin.h>
+
+void enable_fpexcept(void)
+{
+	unsigned int bits;
+	bits = _MM_MASK_INVALID | _MM_MASK_DIV_ZERO | _MM_MASK_OVERFLOW | _MM_MASK_UNDERFLOW;
+	_MM_SET_EXCEPTION_MASK(_MM_GET_EXCEPTION_MASK() & ~bits);
+}
+
+void disable_fpexcept(void)
+{
+	unsigned int bits;
+	bits = _MM_MASK_INVALID | _MM_MASK_DIV_ZERO | _MM_MASK_OVERFLOW | _MM_MASK_UNDERFLOW;
+	_MM_SET_EXCEPTION_MASK(_MM_GET_EXCEPTION_MASK() | bits);
+}
+
+#elif defined(__GNUC__) && !defined(TARGET_IPHONE)
+#define __USE_GNU
+#include <fenv.h>
+
+void enable_fpexcept(void)
+{
+	feenableexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW | FE_UNDERFLOW);
+}
+
+void disable_fpexcept(void)
+{
+	fedisableexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW | FE_UNDERFLOW);
+}
+
+#elif defined(_MSC_VER)
+#include <float.h>
+
+void enable_fpexcept(void)
+{
+	_clearfp();
+	_controlfp(_controlfp(0, 0) & ~(_EM_INVALID | _EM_ZERODIVIDE | _EM_OVERFLOW), _MCW_EM);
+}
+
+void disable_fpexcept(void)
+{
+	_clearfp();
+	_controlfp(_controlfp(0, 0) | (_EM_INVALID | _EM_ZERODIVIDE | _EM_OVERFLOW), _MCW_EM);
+}
+#else
+void enable_fpexcept(void) {}
+void disable_fpexcept(void) {}
+#endif
+
 
 /** Numerical calculation of integrals using simpson's rule */
 scalar_t integral(scalar_t (*f)(scalar_t), scalar_t low, scalar_t high, int samples)

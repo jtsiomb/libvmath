@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdio.h>
 #include "vmath_types.h"
+#include "vector.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -219,8 +220,11 @@ public:
 	void set_scaling(const Vector4 &scale_vec);
 	Vector3 get_scaling() const;		/* extract scaling */
 
+	void set_frustum(float left, float right, float top, float bottom, float znear, float zfar);
 	void set_perspective(float vfov, float aspect, float znear, float zfar);
 	void set_orthographic(float left, float right, float bottom, float top, float znear = -1.0, float zfar = 1.0);
+
+	void set_lookat(const Vector3 &pos, const Vector3 &targ = Vector3(0, 0, 0), const Vector3 &up = Vector3(0, 1, 0));
 
 	void set_column_vector(const Vector4 &vec, unsigned int col_index);
 	void set_row_vector(const Vector4 &vec, unsigned int row_index);

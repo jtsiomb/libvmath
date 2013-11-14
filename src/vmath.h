@@ -52,6 +52,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 extern "C" {
 #endif	/* __cplusplus */
 
+void enable_fpexcept(void);
+void disable_fpexcept(void);
+
 static inline scalar_t smoothstep(float a, float b, float x);
 
 static inline scalar_t frand(scalar_t range);
