@@ -163,15 +163,13 @@ Matrix3x3 Quaternion::get_rotation_matrix() const
 /** Spherical linear interpolation (slerp) */
 Quaternion slerp(const Quaternion &quat1, const Quaternion &q2, scalar_t t)
 {
-	Quaternion q1;
+	Quaternion q1 = quat1;
 	scalar_t dot = q1.s * q2.s + q1.v.x * q2.v.x + q1.v.y * q2.v.y + q1.v.z * q2.v.z;
 
 	if(dot < 0.0) {
 		/* make sure we interpolate across the shortest arc */
 		q1 = -quat1;
 		dot = -dot;
-	} else {
-		q1 = quat1;
 	}
 
 	/* clamp dot to [-1, 1] in order to avoid domain errors in acos due to
