@@ -11,7 +11,7 @@ for arg; do
 	case "$arg" in
 	--prefix=*)
 		value=`echo $arg | sed 's/--prefix=//'`
-		PREFIX=${value:-$prefix}
+		PREFIX=${value:-$PREFIX}
 		;;
 	
 	--enable-opt)
