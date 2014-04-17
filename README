@@ -1,9 +1,16 @@
 vmath - 3.1
 -----------
-The math library has a double interface, and can be used by both C and C++
-programs.
+A mature C and C++ math library for 3D graphics.
 
-So for example a C program could do the following:
+Author: John Tsiombikas <nuclear@member.fsf.org>
+License: GNU LGPL v3 (or later)
+
+project site: http://code.google.com/p/libvmath/
+github: https://github.com/jtsiomb/libvmath
+
+
+The vmath library has a double C and C++ interface. So for example a C program
+could do the following:
 -------------------------------------
 #include <stdio.h>
 #include "vmath.h"
