@@ -83,7 +83,6 @@ static inline vec4_t v4_transform(vec4_t v, mat4_t m);
 }	/* extern "C" */
 
 /* when included from C++ source files, also define the vector classes */
-#include <iostream>
 
 /** 2D Vector */
 class Vector2 {
@@ -143,7 +142,6 @@ inline void operator -=(Vector2 &vec, scalar_t scalar);
 inline void operator *=(Vector2 &vec, scalar_t scalar);
 inline void operator /=(Vector2 &vec, scalar_t scalar);
 
-std::ostream &operator <<(std::ostream &out, const Vector2 &vec);
 
 inline Vector2 lerp(const Vector2 &a, const Vector2 &b, scalar_t t);
 inline Vector2 catmull_rom_spline(const Vector2 &v0, const Vector2 &v1,
@@ -218,7 +216,6 @@ inline void operator -=(Vector3 &vec, scalar_t scalar);
 inline void operator *=(Vector3 &vec, scalar_t scalar);
 inline void operator /=(Vector3 &vec, scalar_t scalar);
 
-std::ostream &operator <<(std::ostream &out, const Vector3 &vec);
 
 inline Vector3 lerp(const Vector3 &a, const Vector3 &b, scalar_t t);
 inline Vector3 catmull_rom_spline(const Vector3 &v0, const Vector3 &v1,
@@ -283,7 +280,6 @@ inline void operator -=(Vector4 &vec, scalar_t scalar);
 inline void operator *=(Vector4 &vec, scalar_t scalar);
 inline void operator /=(Vector4 &vec, scalar_t scalar);
 
-std::ostream &operator <<(std::ostream &out, const Vector4 &vec);
 
 inline Vector4 lerp(const Vector4 &v0, const Vector4 &v1, scalar_t t);
 inline Vector4 catmull_rom_spline(const Vector4 &v0, const Vector4 &v1,

@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MIN(a, b)	((a) < (b) ? (a) : (b))
 #define MAX(a, b)	((a) > (b) ? (a) : (b))
 
-#ifndef __GNUC__
+#if (__STDC_VERSION__ < 199901L) && (__cplusplus < 201103L) && !defined(__GNUC__) && (_MSC_VER < 1800)
 #define round(x)	((x) >= 0 ? (x) + 0.5 : (x) - 0.5)
 #endif
 

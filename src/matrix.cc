@@ -371,7 +371,7 @@ Matrix3x3 Matrix3x3::inverse() const
 	return *this;
 }
 
-ostream &operator <<(ostream &out, const Matrix3x3 &mat)
+/*ostream &operator <<(ostream &out, const Matrix3x3 &mat)
 {
 	for(int i=0; i<3; i++) {
 		char str[100];
@@ -379,7 +379,7 @@ ostream &operator <<(ostream &out, const Matrix3x3 &mat)
 		out << str;
 	}
 	return out;
-}
+}*/
 
 
 
@@ -842,6 +842,7 @@ Matrix4x4 Matrix4x4::inverse() const
 	return adj * (1.0f / determinant());
 }
 
+/*
 ostream &operator <<(ostream &out, const Matrix4x4 &mat)
 {
 	for(int i=0; i<4; i++) {
@@ -851,3 +852,4 @@ ostream &operator <<(ostream &out, const Matrix4x4 &mat)
 	}
 	return out;
 }
+*/

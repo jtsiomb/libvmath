@@ -77,12 +77,13 @@ Vector2 Vector2::refraction(const Vector2 &normal, scalar_t src_ior, scalar_t ds
 	return Vector2(v3refr.x, v3refr.y);
 }
 
+/*
 std::ostream &operator <<(std::ostream &out, const Vector2 &vec)
 {
 	out << "[" << vec.x << " " << vec.y << "]";
 	return out;
 }
-
+*/
 
 
 // --------- Vector3 ----------
@@ -231,11 +232,13 @@ Vector3 Vector3::rotated(const Vector3 &euler) const
 	return transformed(rot);
 }
 
+/*
 std::ostream &operator <<(std::ostream &out, const Vector3 &vec)
 {
 	out << "[" << vec.x << " " << vec.y << " " << vec.z << "]";
 	return out;
 }
+*/
 
 
 // -------------- Vector4 --------------
@@ -319,8 +322,10 @@ Vector4 Vector4::refraction(const Vector4 &normal, scalar_t src_ior, scalar_t ds
 	return *this;
 }
 
+/*
 std::ostream &operator <<(std::ostream &out, const Vector4 &vec)
 {
 	out << "[" << vec.x << " " << vec.y << " " << vec.z << " " << vec.w << "]";
 	return out;
 }
+*/

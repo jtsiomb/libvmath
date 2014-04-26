@@ -60,8 +60,6 @@ quat_t quat_slerp(quat_t q1, quat_t q2, scalar_t t);
 #ifdef __cplusplus
 }	/* extern "C" */
 
-#include <iostream>
-
 /* Quaternion */
 class Quaternion {
 public:
@@ -108,8 +106,6 @@ public:
 
 Quaternion slerp(const Quaternion &q1, const Quaternion &q2, scalar_t t);
 inline Quaternion lerp(const Quaternion &q1, const Quaternion &q2, scalar_t t);
-
-std::ostream &operator <<(std::ostream &out, const Quaternion &q);
 
 #endif	/* __cplusplus */
 

@@ -84,7 +84,6 @@ void m4_print(FILE *fp, mat4_t m);
 }
 
 /* when included from C++ source files, also define the matrix classes */
-#include <iostream>
 
 /** 3x3 matrix */
 class Matrix3x3 {
@@ -145,8 +144,6 @@ public:
 	Matrix3x3 transposed() const;
 	scalar_t determinant() const;
 	Matrix3x3 inverse() const;
-
-	friend std::ostream &operator <<(std::ostream &out, const Matrix3x3 &mat);
 };
 
 /* binary operations matrix (op) matrix */
@@ -163,8 +160,6 @@ Matrix3x3 operator *(const Matrix3x3 &mat, scalar_t scalar);
 Matrix3x3 operator *(scalar_t scalar, const Matrix3x3 &mat);
 
 void operator *=(Matrix3x3 &mat, scalar_t scalar);
-
-std::ostream &operator <<(std::ostream &out, const Matrix3x3 &mat);
 
 
 
@@ -236,8 +231,6 @@ public:
 	scalar_t determinant() const;
 	Matrix4x4 adjoint() const;
 	Matrix4x4 inverse() const;
-
-	friend std::ostream &operator <<(std::ostream &out, const Matrix4x4 &mat);
 };
 
 /* binary operations matrix (op) matrix */
@@ -254,8 +247,6 @@ Matrix4x4 operator *(const Matrix4x4 &mat, scalar_t scalar);
 Matrix4x4 operator *(scalar_t scalar, const Matrix4x4 &mat);
 
 void operator *=(Matrix4x4 &mat, scalar_t scalar);
-
-std::ostream &operator <<(std::ostream &out, const Matrix4x4 &mat);
 
 #endif	/* __cplusplus */
 

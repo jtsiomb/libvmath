@@ -203,8 +203,10 @@ Quaternion slerp(const Quaternion &quat1, const Quaternion &q2, scalar_t t)
 }
 
 
+/*
 std::ostream &operator <<(std::ostream &out, const Quaternion &q)
 {
 	out << "(" << q.s << ", " << q.v << ")";
 	return out;
 }
+*/
