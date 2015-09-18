@@ -3,7 +3,7 @@
 PREFIX=/usr/local
 OPT=yes
 DBG=yes
-VERSION=`head -n 1 README | sed 's/^.*- //'`
+VERSION=`head -n 1 VERSION`
 
 echo "configuring vmath $VERSION ..."
 

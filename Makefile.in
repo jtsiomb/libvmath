@@ -4,13 +4,18 @@ obj = $(csrc:.c=.o) $(ccsrc:.cc=.o)
 depfiles = $(obj:.o=.d)
 
 abi_major = 3
-abi_minor = 1
+abi_minor = 2
 
 lib_a = libvmath.a
 
-ifeq ($(shell uname -s), Darwin)
+sys = $(shell uname -s | sed 's/MINGW32.*/MINGW32/')
+
+ifeq ($(sys), Darwin)
 	lib_so = libvmath.dylib
 	shared = -dynamiclib
+else ifeq ($(sys), MINGW32)
+	lib_so = libvmath.dll
+	shared = -shared -Wl,--output-def,libvmath.def
 else
 	solink = libvmath.so
 	soname = $(solink).$(abi_major)

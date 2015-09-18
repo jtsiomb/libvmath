@@ -1,3 +1,20 @@
+/*
+libvmath - a vector math library
+Copyright (C) 2004-2015 John Tsiombikas <nuclear@member.fsf.org>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #include "vector.h"
 #include "vmath.h"
 
@@ -114,19 +131,6 @@ Vector3::Vector3(const Vector4 &vec)
 	x = vec.x;
 	y = vec.y;
 	z = vec.z;
-}
-
-Vector3::Vector3(const SphVector &sph)
-{
-	*this = sph;
-}
-
-Vector3 &Vector3::operator =(const SphVector &sph)
-{
-	x = sph.r * cos(sph.theta) * sin(sph.phi);
-	z = sph.r * sin(sph.theta) * sin(sph.phi);
-	y = sph.r * cos(sph.phi);
-	return *this;
 }
 
 void Vector3::normalize()

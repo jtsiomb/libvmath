@@ -1,6 +1,6 @@
 /*
 libvmath - a vector math library
-Copyright (C) 2004-2011 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2004-2015 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
@@ -16,8 +16,8 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef VMATH_VECTOR_H_
-#define VMATH_VECTOR_H_
+#ifndef LIBVMATH_VECTOR_H_
+#define LIBVMATH_VECTOR_H_
 
 #include <stdio.h>
 #include "vmath_types.h"
@@ -158,9 +158,6 @@ public:
 	Vector3(const vec3_t &vec);
 	Vector3(const Vector2 &vec);
 	Vector3(const Vector4 &vec);
-	Vector3(const SphVector &sph);
-
-	Vector3 &operator =(const SphVector &sph);
 
 	inline scalar_t &operator [](int elem);
 	inline const scalar_t &operator [](int elem) const;
@@ -291,4 +288,4 @@ inline Vector4 bspline(const Vector4 &v0, const Vector4 &v1,
 
 #include "vector.inl"
 
-#endif	/* VMATH_VECTOR_H_ */
+#endif	/* LIBVMATH_VECTOR_H_ */

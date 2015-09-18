@@ -1,6 +1,6 @@
 /*
 libvmath - a vector math library
-Copyright (C) 2004-2011 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2004-2015 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
@@ -16,8 +16,8 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef VMATH_MATRIX_H_
-#define VMATH_MATRIX_H_
+#ifndef LIBVMATH_MATRIX_H_
+#define LIBVMATH_MATRIX_H_
 
 #include <stdio.h>
 #include "vmath_types.h"
@@ -252,4 +252,4 @@ void operator *=(Matrix4x4 &mat, scalar_t scalar);
 
 #include "matrix.inl"
 
-#endif	/* VMATH_MATRIX_H_ */
+#endif	/* LIBVMATH_MATRIX_H_ */

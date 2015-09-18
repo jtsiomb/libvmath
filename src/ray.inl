@@ -1,6 +1,6 @@
 /*
 libvmath - a vector math library
-Copyright (C) 2004-2011 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2004-2015 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
@@ -31,26 +31,16 @@ static inline ray_t ray_cons(vec3_t origin, vec3_t dir)
 #ifdef __cplusplus
 }
 
-inline Ray reflect_ray(const Ray &inray, const Vector3 &norm)
+inline Ray reflect(const Ray &inray, const Vector3 &norm)
 {
 	Ray ray = inray;
-	ray.iter--;
 	ray.dir = ray.dir.reflection(norm);
 	return ray;
 }
 
-inline Ray refract_ray(const Ray &inray, const Vector3 &norm, scalar_t mat_ior, bool entering, scalar_t ray_mag)
+inline Ray refract(const Ray &inray, const Vector3 &norm, scalar_t ior, scalar_t ray_mag)
 {
 	Ray ray = inray;
-	ray.iter--;
-
-	scalar_t ior = ray.calc_ior(entering, mat_ior);
-
-	if(entering) {
-		ray.enter(mat_ior);
-	} else {
-		ray.leave();
-	}
 
 	if(ray_mag < 0.0) {
 		ray_mag = ray.dir.length();
@@ -59,11 +49,7 @@ inline Ray refract_ray(const Ray &inray, const Vector3 &norm, scalar_t mat_ior, 
 
 	/* check TIR */
 	if(dot_product(ray.dir, norm) > 0.0) {
-		if(entering) {
-			ray.leave();
-		} else {
-			ray.enter(mat_ior);
-		}
+		return reflect(inray, norm);
 	}
 	return ray;
 }

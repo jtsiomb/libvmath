@@ -11,12 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\basis.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\basis_c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\geom.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,9 +32,6 @@
     <ClCompile Include="src\ray_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sphvec.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\vector.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,9 +40,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\basis.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\geom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -62,9 +50,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\ray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sphvec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\vector.h">

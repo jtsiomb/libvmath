@@ -1,6 +1,6 @@
 /*
 libvmath - a vector math library
-Copyright (C) 2004-2011 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2004-2015 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
@@ -36,7 +36,7 @@ void disable_fpexcept(void)
 	_MM_SET_EXCEPTION_MASK(_MM_GET_EXCEPTION_MASK() | bits);
 }
 
-#elif defined(__GNUC__) && !defined(TARGET_IPHONE)
+#elif defined(__GNUC__) && !defined(TARGET_IPHONE) && !defined(__MINGW32__)
 #define __USE_GNU
 #include <fenv.h>
 
@@ -50,8 +50,18 @@ void disable_fpexcept(void)
 	fedisableexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW | FE_UNDERFLOW);
 }
 
-#elif defined(_MSC_VER)
+#elif defined(_MSC_VER) || defined(__MINGW32__)
 #include <float.h>
+
+#if defined(__MINGW32__) && !defined(_EM_OVERFLOW)
+/* if gcc's float.h gets precedence, the mingw MSVC includes won't be declared */
+#define _MCW_EM			0x8001f
+#define _EM_INVALID		0x10
+#define _EM_ZERODIVIDE	0x08
+#define _EM_OVERFLOW	0x04
+unsigned int __cdecl _clearfp(void);
+unsigned int __cdecl _controlfp(unsigned int, unsigned int);
+#endif
 
 void enable_fpexcept(void)
 {

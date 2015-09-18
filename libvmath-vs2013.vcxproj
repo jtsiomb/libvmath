@@ -28,8 +28,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -40,7 +40,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -69,6 +69,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)-dbg</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>$(ProjectName)-x64-dbg</TargetName>
@@ -92,6 +93,13 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4244;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
+    <PostBuildEvent>
+      <Command>mkdir usr\include\vmath
+mkdir usr\lib
+copy /Y src\*.h usr\include\vmath\
+copy /Y src\*.inl usr\include\vmath\
+copy /Y $(TargetPath) usr\lib\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -165,8 +173,6 @@ copy /Y $(TargetPath) usr\lib\</Command>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\basis.cc" />
-    <ClCompile Include="src\basis_c.c" />
     <ClCompile Include="src\geom.c" />
     <ClCompile Include="src\matrix.cc" />
     <ClCompile Include="src\matrix_c.c" />
@@ -174,17 +180,14 @@ copy /Y $(TargetPath) usr\lib\</Command>
     <ClCompile Include="src\quat_c.c" />
     <ClCompile Include="src\ray.cc" />
     <ClCompile Include="src\ray_c.c" />
-    <ClCompile Include="src\sphvec.cc" />
     <ClCompile Include="src\vector.cc" />
     <ClCompile Include="src\vmath.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\basis.h" />
     <ClInclude Include="src\geom.h" />
     <ClInclude Include="src\matrix.h" />
     <ClInclude Include="src\quat.h" />
     <ClInclude Include="src\ray.h" />
-    <ClInclude Include="src\sphvec.h" />
     <ClInclude Include="src\vector.h" />
     <ClInclude Include="src\vmath.h" />
     <ClInclude Include="src\vmath_config.h" />

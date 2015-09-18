@@ -1,6 +1,6 @@
 /*
 libvmath - a vector math library
-Copyright (C) 2004-2011 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2004-2015 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
@@ -16,8 +16,8 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef VMATH_TYPES_H_
-#define VMATH_TYPES_H_
+#ifndef LIBVMATH_TYPES_H_
+#define LIBVMATH_TYPES_H_
 
 #include "vmath_config.h"
 
@@ -52,7 +52,6 @@ class Vector4;
 class Quaternion;
 class Matrix3x3;
 class Matrix4x4;
-class SphVector;
 #endif	/* __cplusplus */
 
-#endif	/* VMATH_TYPES_H_ */
+#endif	/* LIBVMATH_TYPES_H_ */

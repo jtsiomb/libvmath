@@ -1,6 +1,6 @@
 /*
 libvmath - a vector math library
-Copyright (C) 2004-2011 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2004-2015 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
@@ -16,8 +16,8 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef VMATH_RAY_H_
-#define VMATH_RAY_H_
+#ifndef LIBVMATH_RAY_H_
+#define LIBVMATH_RAY_H_
 
 #include "matrix.h"
 #include "vector.h"
@@ -37,15 +37,12 @@ ray_t ray_transform(ray_t r, mat4_t m);
 }	/* __cplusplus */
 
 class Ray {
-public:
-	/* enviornmental index of refraction, normally 1.0 */
-	static scalar_t env_ior;
+private:
+	void (*data_destructor)(void*);
 
+public:
 	Vector3 origin, dir;
-	scalar_t energy;
-	int iter;
-	scalar_t ior;
-	long time;
+	void *data; // each ray may carry additional data
 
 	Ray();
 	Ray(const Vector3 &origin, const Vector3 &dir);
@@ -53,16 +50,13 @@ public:
 	void transform(const Matrix4x4 &xform);
 	Ray transformed(const Matrix4x4 &xform) const;
 
-	void enter(scalar_t new_ior);
-	void leave();
-
-	scalar_t calc_ior(bool entering, scalar_t mat_ior = 1.0) const;
+	void set_data(void *data, void (*data_destr_func)(void*) = 0);
 };
 
-inline Ray reflect_ray(const Ray &inray, const Vector3 &norm);
-inline Ray refract_ray(const Ray &inray, const Vector3 &norm, scalar_t ior, bool entering, scalar_t ray_mag = -1.0);
+inline Ray reflect(const Ray &inray, const Vector3 &norm);
+inline Ray refract(const Ray &inray, const Vector3 &norm, scalar_t ior, scalar_t ray_mag = -1.0);
 #endif	/* __cplusplus */
 
 #include "ray.inl"
 
-#endif	/* VMATH_RAY_H_ */
+#endif	/* LIBVMATH_RAY_H_ */

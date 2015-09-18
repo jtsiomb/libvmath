@@ -1,6 +1,6 @@
 /*
 libvmath - a vector math library
-Copyright (C) 2004-2013 John Tsiombikas <nuclear@member.fsf.org>
+Copyright (C) 2004-2015 John Tsiombikas <nuclear@member.fsf.org>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
@@ -16,8 +16,8 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef VMATH_H_
-#define VMATH_H_
+#ifndef LIBVMATH_VMATH_H_
+#define LIBVMATH_VMATH_H_
 
 #include <math.h>
 #include "vmath_types.h"
@@ -90,8 +90,7 @@ scalar_t turbulence3(scalar_t x, scalar_t y, scalar_t z, int octaves);
 #include "vector.h"
 #include "matrix.h"
 #include "quat.h"
-#include "sphvec.h"
 #include "ray.h"
 #include "geom.h"
 
-#endif	/* VMATH_H_ */
+#endif	/* LIBVMATH_VMATH_H_ */
