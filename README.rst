@@ -55,5 +55,25 @@ While a C++ program could do the following:
      std::cout << x << std::endl;
  }
 
+
+Build
+-----
+To build and install ``libvmath`` on UNIX, run the usual::
+
+ ./configure
+ make
+ make install
+
+See ``./configure --help`` for build-time options. 
+
+To build on windows, you may use the included visual studio project, or use
+mingw, in which case just follow the UNIX instructions above.
+
+To cross-compile for windows with mingw-w64, try the following incantation::
+
+ ./configure --prefix=/usr/i686-w64-mingw32
+ make CC=i686-w64-mingw32-gcc AR=i686-w64-mingw32-ar sys=mingw
+ make install sys=mingw
+
 .. _COPYING: http://www.gnu.org/licenses/gpl
 .. _COPYING.LESSER: http://www.gnu.org/licenses/lgpl
