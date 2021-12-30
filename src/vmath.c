@@ -315,12 +315,12 @@ scalar_t noise3(scalar_t x, scalar_t y, scalar_t z)
 	c = lerp(a, b, sy);
 
 	/* interpolate along the bottom slice of the cell */
-	u = v3_dot(grad3[b00 + bz0], v3_cons(rx0, ry0, rz1));
-	v = v3_dot(grad3[b10 + bz0], v3_cons(rx1, ry0, rz1));
+	u = v3_dot(grad3[b00 + bz1], v3_cons(rx0, ry0, rz1));
+	v = v3_dot(grad3[b10 + bz1], v3_cons(rx1, ry0, rz1));
 	a = lerp(u, v, sx);
 
-	u = v3_dot(grad3[b01 + bz0], v3_cons(rx0, ry1, rz1));
-	v = v3_dot(grad3[b11 + bz0], v3_cons(rx1, ry1, rz1));
+	u = v3_dot(grad3[b01 + bz1], v3_cons(rx0, ry1, rz1));
+	v = v3_dot(grad3[b11 + bz1], v3_cons(rx1, ry1, rz1));
 	b = lerp(u, v, sx);
 
 	d = lerp(a, b, sy);
